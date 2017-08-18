@@ -1,0 +1,38 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="bit.harrl7.visscan.FlashStimFrag"
+    android:id="@+id/rl"
+    android:background="@android:color/black">
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView"
+        android:textSize="24sp"
+        android:textStyle="normal|bold"
+        android:textColor="@color/colorAccent"
+        android:textAlignment="textEnd"
+        android:visibility="gone"/>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/stimContainer">
+
+        <ImageView
+            android:id="@+id/ivStim"
+            android:background="@drawable/white_ball"
+            android:layout_height="100dp"
+            android:contentDescription=""
+            android:layout_width="100dp"
+            android:layout_weight="1"
+            android:adjustViewBounds="false"
+            android:cropToPadding="false"
+            android:visibility="invisible"/>
+    </FrameLayout>
+
+</RelativeLayout>

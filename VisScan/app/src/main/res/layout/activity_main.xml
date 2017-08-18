@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.DrawerLayout
+xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:id="@+id/activity_flash_stim"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+tools:context="bit.harrl7.visscan.MainActivity"
+android:background="@android:color/black">
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/fragment_container">
+</RelativeLayout>
+
+<TextView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:text="Paused"
+    android:textAppearance="@style/TextAppearance.AppCompat.Display4"
+    android:id="@+id/tvPause"
+    android:textColor="@android:color/background_light"
+    android:textAlignment="center"
+    android:textStyle="normal|bold"
+    android:textAllCaps="true"
+    android:gravity="center"/>
+
+
+
+<LinearLayout
+    android:layout_gravity="start"
+    android:orientation="vertical"
+    android:layout_width="400dp"
+    android:layout_height="match_parent"
+    android:background="#BBDEFB">
+
+    <Button
+        android:text="Start Test"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnStart"
+        android:padding="30dp"
+        android:layout_marginBottom="20dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Button"
+        android:textStyle="normal|bold"
+        android:background="#82B1FF"
+        android:textSize="30sp"/>
+
+    <Button
+        android:text="Vision Tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnBackToTools"
+        android:padding="30dp"
+        android:layout_marginBottom="20dp"
+        android:background="#82B1FF"
+        android:textAppearance="@style/TextAppearance.AppCompat.Button"
+        android:textStyle="normal|bold"
+        android:textSize="30sp"/>
+
+    <Button
+        android:text="Home Page"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnBackToHome"
+        android:padding="30dp"
+        android:layout_marginBottom="20dp"
+        android:background="#82B1FF"
+        android:textAppearance="@style/TextAppearance.AppCompat.Button"
+        android:textStyle="normal|bold"
+        android:textSize="30sp"/>
+
+    <Button
+        android:text="Save Results"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:id="@+id/btnSave"
+        android:padding="30dp"
+        android:layout_marginBottom="20dp"
+        android:background="#82B1FF"
+        android:textAppearance="@style/TextAppearance.AppCompat.Button"
+        android:textStyle="normal|bold"
+        android:textSize="30sp"/>
+
+</LinearLayout>
+
+</android.support.v4.widget.DrawerLayout>

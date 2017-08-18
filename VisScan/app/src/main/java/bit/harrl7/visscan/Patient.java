@@ -1,0 +1,23 @@
+package bit.harrl7.visscan;
+
+/**
+ * Created by aberhjk1 on 5/06/2017.
+ */
+
+
+
+// This class holds a static variable for the Users Identification Number/String
+public class Patient
+{
+    public static String getUserID()
+    {
+        return userID;
+    }
+
+    public static void setUserID(String userID)
+    {
+        Patient.userID = userID;
+    }
+
+    public static String userID;
+}
