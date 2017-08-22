@@ -15,7 +15,6 @@
         <activity
             android:name=".MainActivity"
             android:screenOrientation="landscape" />
-
         <activity android:name=".HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,12 +22,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".ToolListActivity"
-            android:screenOrientation="landscape"/>
-
-        <activity android:name=".ResultsActivity"/>
+            android:screenOrientation="landscape" />
+        <activity android:name=".ResultsActivity" />
+        <activity android:name=".GraphActivity" />
+        <activity android:name=".GraphShow"></activity>
     </application>
 
 </manifest>

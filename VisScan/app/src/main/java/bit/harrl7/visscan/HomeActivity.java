@@ -10,6 +10,9 @@ import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class HomeActivity extends AppCompatActivity {
 
     //public static String userID;
@@ -31,13 +34,13 @@ public class HomeActivity extends AppCompatActivity {
         btnResults.setOnClickListener(new ButtonHandler());
         btnSwitchUser.setOnClickListener(new ButtonHandler());
 
-        if(Patient.userID == null)
+        if((Patient.userID == null) || (Patient.dob == null))
         {
             StartUserIDFragment();
         }
         else
         {
-            tvUserID.setText("Logged in as " + Patient.getUserID());
+            tvUserID.setText("Logged in as " + Patient.getUserID() + "DOB - " + Patient.getDOB());
         }
 
     }
@@ -46,7 +49,23 @@ public class HomeActivity extends AppCompatActivity {
     {
 
         Patient.setUserID(inputUserID.trim());
-        tvUserID.setText("Logged in as " + Patient.getUserID());
+
+    }
+
+    public void setUserDOB(int day, int month, int year)
+    {
+        StringBuilder bDayString = new StringBuilder();
+
+        bDayString.append(day);
+        bDayString.append("/");
+        bDayString.append(month);
+        bDayString.append("/");
+        bDayString.append(year);
+
+        Patient.setDate(String.valueOf(bDayString));
+        tvUserID.setText("Logged in as " + Patient.getUserID() + ", D.O.B " + Patient.getDOB());
+
+        //tvUserID.setText("Logged in as " + Patient.getUserID());
     }
 
     public void StartUserIDFragment()

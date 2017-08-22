@@ -113,7 +113,9 @@ public class LocationFrag extends Fragment implements IVisualTest {
             //set the image view on click listener
             smileyIV.setOnClickListener(new ShapeClickHandler());
 
-            LocationStimTrial stim = new LocationStimTrial(new Point((int)smileyIV.getX(), (int)smileyIV.getY()), false);
+            int xStandardized= ((100*(int)smileyIV.getX())/bounds.x);
+            int yStandardized= ((100*(int)smileyIV.getY())/bounds.y);
+            LocationStimTrial stim = new LocationStimTrial(new Point(xStandardized, yStandardized), false);
             hitPoints.add(stim);
 
             //add the imageview to the layout
@@ -303,11 +305,15 @@ public class LocationFrag extends Fragment implements IVisualTest {
             //disable the clicked image
             imageHit.setEnabled(false);
 
+            int xStandardized= ((100*(int)imageHit.getX())/bounds.x);
+            int yStandardized= ((100*(int)imageHit.getY())/bounds.y);
+
             //add the smiley face that was hit to an arraylist of points
             for(LocationStimTrial stim : hitPoints)
             {
                 //if its the stim thats hit, set its boolean to true
-                if((stim.pos.x == (int)imageHit.getX())&&(stim.pos.y == (int)imageHit.getY()))
+
+                if((stim.pos.x == xStandardized )&&(stim.pos.y == yStandardized))
                 {
                     stim.hit = true;
                 }
