@@ -101,7 +101,7 @@ public class DisplayToolFrag extends Fragment {
                 tvDescription.setText(R.string.desc_contrast);
                 break;
             case "Peripherial":
-                selectedTool = ETestType.Peripherial;
+                selectedTool = ETestType.Peripheral;
                 tvDescription.setText(R.string.desc_peripheral);
                 break;
             default:

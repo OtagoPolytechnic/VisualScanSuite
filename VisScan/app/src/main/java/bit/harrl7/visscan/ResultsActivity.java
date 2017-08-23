@@ -179,7 +179,7 @@ public class ResultsActivity extends AppCompatActivity {
         @Override
         public void onClick(View v)
         {
-            ReadingCSV readingAsync = new ReadingCSV(ResultsActivity.this);
+            ReadingCSV readingAsync = new ReadingCSV(ResultsActivity.this); //start async task for reading the csv
             readingAsync.execute();
 
         }
@@ -194,7 +194,7 @@ public class ResultsActivity extends AppCompatActivity {
             dialog = new ProgressDialog(activity);
             if(!this.dialog.isShowing())
             {
-                this.dialog.show();
+                this.dialog.show(); //showt the dialog
             }
             else
             {
@@ -263,7 +263,7 @@ public class ResultsActivity extends AppCompatActivity {
                 //dialog.dismiss();
             }
 
-            Intent graphIntent = new Intent(ResultsActivity.this, GraphActivity.class); //satrt
+            Intent graphIntent = new Intent(ResultsActivity.this, GraphActivity.class); //go to the output graph display
 
             graphIntent.putParcelableArrayListExtra("graphDataToPlot", results);
 
@@ -273,7 +273,7 @@ public class ResultsActivity extends AppCompatActivity {
         @Override
         protected void onPreExecute()
         {
-            this.dialog.setMessage("Generating Graph...");
+            this.dialog.setMessage("Generating Graph... Please wait");
             this.dialog.show();
         }
 

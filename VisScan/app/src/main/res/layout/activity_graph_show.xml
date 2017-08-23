@@ -6,8 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="bit.harrl7.visscan.GraphShow">
 
@@ -21,16 +21,6 @@
         android:layout_above="@+id/btnSendEmail"
         android:layout_marginBottom="32dp"
         android:layout_marginTop="32dp" />
-
-    <TextView
-        android:text="TextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:id="@+id/tvUpperRight"
-        android:layout_alignParentEnd="true"
-        android:textSize="24sp"
-        android:layout_alignStart="@+id/imgGraph" />
 
     <Button
         android:text="Send to Email"
@@ -58,5 +48,45 @@
         android:layout_alignParentBottom="true"
         android:layout_alignEnd="@+id/imgGraph"
         android:layout_below="@+id/imgGraph" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/imgGraph"
+        android:layout_marginEnd="52dp"
+        android:layout_marginTop="74dp"
+        android:id="@+id/tvUpperLeft"
+        android:textSize="24sp" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/imgGraph"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="104dp"
+        android:id="@+id/tvLowerLeft"
+        android:textSize="24sp" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvUpperRight"
+        android:textSize="24sp"
+        android:layout_alignBaseline="@+id/tvUpperLeft"
+        android:layout_alignBottom="@+id/tvUpperLeft"
+        android:layout_toEndOf="@+id/imgGraph" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvLowerRight"
+        android:textSize="24sp"
+        android:layout_alignBaseline="@+id/tvLowerLeft"
+        android:layout_alignBottom="@+id/tvLowerLeft"
+        android:layout_toEndOf="@+id/imgGraph" />
 
 </RelativeLayout>

@@ -40,7 +40,7 @@ public class HomeActivity extends AppCompatActivity {
         }
         else
         {
-            tvUserID.setText("Logged in as " + Patient.getUserID() + "DOB - " + Patient.getDOB());
+            tvUserID.setText("Logged in as: " + Patient.getUserID());
         }
 
     }
@@ -57,13 +57,13 @@ public class HomeActivity extends AppCompatActivity {
         StringBuilder bDayString = new StringBuilder();
 
         bDayString.append(day);
-        bDayString.append("/");
+        bDayString.append("-");
         bDayString.append(month);
-        bDayString.append("/");
+        bDayString.append("-");
         bDayString.append(year);
 
         Patient.setDate(String.valueOf(bDayString));
-        tvUserID.setText("Logged in as " + Patient.getUserID() + ", D.O.B " + Patient.getDOB());
+        tvUserID.setText("Logged in as " + Patient.getUserID());
 
         //tvUserID.setText("Logged in as " + Patient.getUserID());
     }

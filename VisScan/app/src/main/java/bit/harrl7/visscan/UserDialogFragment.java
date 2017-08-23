@@ -42,20 +42,25 @@ public class UserDialogFragment extends DialogFragment
         @Override
         public void onClick(View v)
         {
-            String userID = userIDText.getText().toString();
+            if(userIDText.getText().toString().equals(""))
+            {
+                userIDText.setError("Required");
 
-            int day = datePicker.getDayOfMonth();
-            int month = datePicker.getMonth() + 1;
-            int year = datePicker.getYear();
+            }
+            else
+            {
+                String userID = userIDText.getText().toString();
 
+                int day = datePicker.getDayOfMonth();
+                int month = datePicker.getMonth() + 1;
+                int year = datePicker.getYear();
 
+                HomeActivity homeActivity = (HomeActivity)getActivity();
+                homeActivity.setUserID(userID);
+                homeActivity.setUserDOB(day, month, year);
+                dismiss();
+            }
 
-
-
-            HomeActivity homeActivity = (HomeActivity)getActivity();
-            homeActivity.setUserID(userID);
-            homeActivity.setUserDOB(day, month, year);
-            dismiss();
         }
     }
 

@@ -24,7 +24,9 @@ import android.graphics.Paint;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class GraphActivity extends AppCompatActivity {
 
@@ -130,11 +132,14 @@ public class GraphActivity extends AppCompatActivity {
                 resultsFolder.mkdirs();
             }
 
-
+            SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yy_HH:mm:ss");
+            String fileTimeStamp = df.format(new Date());
+            String wholeFileName = Patient.getUserID() + "_" + Patient.getDOB() + "-" +  fileTimeStamp + ".jpg";
             try
             {
 
-                getDrawingCache().compress(Bitmap.CompressFormat.JPEG, 100, new FileOutputStream(resultsFolder + "/" + Patient.getUserID() + ".jpg")); //outputs the canvas to jpg in graphs folder
+
+                getDrawingCache().compress(Bitmap.CompressFormat.JPEG, 100, new FileOutputStream(resultsFolder + "/" + wholeFileName)); //outputs the canvas to jpg in graphs folder
 
 
             } catch (Exception e) {
@@ -144,14 +149,15 @@ public class GraphActivity extends AppCompatActivity {
 
             Bitmap graphToShow;
 
+            graphToShow = BitmapFactory.decodeFile(resultsFolder+ "/" + wholeFileName);
 
-            graphToShow = BitmapFactory.decodeFile(resultsFolder+ "/" + Patient.getUserID() + ".jpg");
             ByteArrayOutputStream stream = new ByteArrayOutputStream();
             graphToShow.compress(Bitmap.CompressFormat.PNG, 100, stream);
             byte[] byteArray = stream.toByteArray();
 
             Intent graphImageViewShow = new Intent(GraphActivity.this, GraphShow.class);
             graphImageViewShow.putExtra("Graph", byteArray);
+            graphImageViewShow.putExtra("fileName", wholeFileName);
 
             graphImageViewShow.putExtra("upperRight", percentageUpperRight);
             graphImageViewShow.putExtra("upperLeft", percentageUpperLeft);

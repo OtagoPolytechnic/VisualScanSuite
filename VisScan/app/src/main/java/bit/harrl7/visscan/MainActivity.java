@@ -118,7 +118,7 @@ public class MainActivity extends AppCompatActivity
                 dynamicFragment = new WanderStimFrag();
                 break;
                 
-            case Peripherial:
+            case Peripheral:
                 tvName.setText("Peripheral Test");
                 dynamicFragment = new PeripherialFlashFrag();
                 break;
@@ -306,7 +306,7 @@ public class MainActivity extends AppCompatActivity
     //  Start the timer, run current fragment loop
     public void RunTimer()
     {
-        // testFrag = (IVisualTest) getFragmentManager().findFragmentById(R.id.fragment_container);
+         //testFrag = (IVisualTest) getFragmentManager().findFragmentById(R.id.fragment_container);
 
         timer = new Thread()
         {

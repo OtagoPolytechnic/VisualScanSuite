@@ -20,6 +20,7 @@ public class GraphShow extends AppCompatActivity {
 
     Button btnBack;
     Button btnEmail;
+    String wholeFilePath;
     float upperRightCount;
     float upperLeftCount;
     float lowerRightCount;
@@ -37,13 +38,26 @@ public class GraphShow extends AppCompatActivity {
         upperLeftCount = getIntent().getFloatExtra("upperLeft", -1f)* 100.0f;
         lowerRightCount = getIntent().getFloatExtra("lowerRight", -1f)* 100.0f;
         lowerLeftCount = getIntent().getFloatExtra("lowerLeft", -1f)* 100.0f;
+        wholeFilePath = getIntent().getStringExtra("fileName");
         Bitmap bmp = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
         ImageView imgGraph = (ImageView)findViewById(R.id.imgGraph);
         imgGraph.setImageBitmap(bmp);
 
 
-        TextView tv = (TextView)findViewById(R.id.tvUpperRight);
-        tv.setText("Upper Right Percentage: " +String.valueOf(twoD.format(upperRightCount)) + "%, Upper Left: " + String.valueOf(twoD.format(upperLeftCount))+ "%, Lower Left: " + String.valueOf(twoD.format(lowerLeftCount)) + "%, Lower Right: " + String.valueOf(twoD.format(lowerRightCount)) + "%");
+        TextView tvUpperRight = (TextView)findViewById(R.id.tvUpperRight);
+        TextView tvUpperLeft = (TextView)findViewById(R.id.tvUpperLeft);
+        TextView tvLowerRight = (TextView)findViewById(R.id.tvLowerRight);
+        TextView tvLowerLeft = (TextView)findViewById(R.id.tvLowerLeft);
+
+        String upperRightPercentage = String.valueOf(twoD.format(upperRightCount)) + "%";
+        String upperLeftPercentage = String.valueOf(twoD.format(upperLeftCount)) + "%";
+        String lowerLeftPercentage = String.valueOf(twoD.format(lowerLeftCount)) + "%";
+        String lowerRightPercentage = String.valueOf(twoD.format(lowerRightCount)) + "%";
+
+        tvUpperRight.setText(upperRightPercentage);
+        tvUpperLeft.setText(upperLeftPercentage);
+        tvLowerLeft.setText(lowerLeftPercentage);
+        tvLowerRight.setText(lowerRightPercentage);
 
         btnBack = (Button)findViewById(R.id.btnBackToResults);
         btnEmail = (Button)findViewById(R.id.btnSendEmail);
@@ -83,7 +97,7 @@ public class GraphShow extends AppCompatActivity {
             {
                 resultsFolder.mkdirs();
             }
-            String pathofBmp = resultsFolder+ "/" + Patient.getUserID() + ".jpg";
+            String pathofBmp = resultsFolder+ "/" + wholeFilePath;
             File pictureOfGraphURI = new File(pathofBmp);
 
             Intent emailIntent = new Intent(Intent.ACTION_SEND);
