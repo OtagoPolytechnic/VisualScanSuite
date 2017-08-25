@@ -47,9 +47,8 @@ public class HomeActivity extends AppCompatActivity {
 
     public void setUserID(String inputUserID)
     {
-
+        tvUserID.setVisibility(View.VISIBLE);
         Patient.setUserID(inputUserID.trim());
-
     }
 
     public void setUserDOB(int day, int month, int year)
@@ -62,6 +61,7 @@ public class HomeActivity extends AppCompatActivity {
         bDayString.append("-");
         bDayString.append(year);
 
+        tvUserID.setVisibility(View.VISIBLE);
         Patient.setDate(String.valueOf(bDayString));
         tvUserID.setText("Logged in as " + Patient.getUserID());
 
@@ -71,6 +71,7 @@ public class HomeActivity extends AppCompatActivity {
     public void StartUserIDFragment()
     {
         FragmentManager fm = getFragmentManager();
+        tvUserID.setVisibility(View.INVISIBLE);
         UserDialogFragment dialogFragment = new UserDialogFragment ();
         dialogFragment.show(fm, "User ID Fragment");
     }

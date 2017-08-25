@@ -7,12 +7,14 @@ import android.net.Uri;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
@@ -25,6 +27,8 @@ public class GraphShow extends AppCompatActivity {
     float upperLeftCount;
     float lowerRightCount;
     float lowerLeftCount;
+    File pictureOfGraphURI;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,6 +77,15 @@ public class GraphShow extends AppCompatActivity {
         @Override
         public void onClick(View v)
         {
+            try
+            {
+                pictureOfGraphURI.getAbsoluteFile().delete();
+            }
+            catch(Exception e)
+            {
+                Log.e("Cannot delete", "Can't delete");
+            }
+
             Intent backToResults = new Intent(GraphShow.this, ResultsActivity.class);
             startActivity(backToResults);
 
@@ -98,7 +111,7 @@ public class GraphShow extends AppCompatActivity {
                 resultsFolder.mkdirs();
             }
             String pathofBmp = resultsFolder+ "/" + wholeFilePath;
-            File pictureOfGraphURI = new File(pathofBmp);
+            pictureOfGraphURI = new File(pathofBmp);
 
             Intent emailIntent = new Intent(Intent.ACTION_SEND);
             emailIntent.setType("image/*");
@@ -112,12 +125,23 @@ public class GraphShow extends AppCompatActivity {
 
             startActivity(mailer);
 
+
+
         }
     }
 
     @Override
     public void onBackPressed()
     {
+        try
+        {
+            pictureOfGraphURI.getAbsoluteFile().delete();
+        }
+        catch(Exception e)
+        {
+            Log.e("Cannot delete", "Can't delete");
+        }
+
         Intent backToResults = new Intent(GraphShow.this, ResultsActivity.class);
         startActivity(backToResults);
 

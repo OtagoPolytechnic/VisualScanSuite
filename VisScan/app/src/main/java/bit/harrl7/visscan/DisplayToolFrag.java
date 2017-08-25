@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 
@@ -19,6 +20,7 @@ public class DisplayToolFrag extends Fragment {
  TextView tvNameOfTool;
     TextView tvDescription;
     Button btnStartTool;
+    ImageView imgOfTest;
 
     ETestType selectedTool;
     public DisplayToolFrag() {
@@ -36,7 +38,7 @@ public class DisplayToolFrag extends Fragment {
 
         //get a ref to the description text view
         tvDescription = (TextView)v.findViewById(R.id.tvInfoTool);
-
+        imgOfTest = (ImageView)v.findViewById(R.id.imgToolShow);
         selectedTool = ETestType.Error;
 
         //Testing, might be better to just pass across as bundle/something else
@@ -74,18 +76,22 @@ public class DisplayToolFrag extends Fragment {
         {
             case "Wander":
                 selectedTool = ETestType.Wander;
+                imgOfTest.setImageResource(R.drawable.wandertest);
                 tvDescription.setText(R.string.desc_wander);
                 break;
             case "Flash":
                 selectedTool = ETestType.Flash;
+                imgOfTest.setImageResource(R.drawable.flashtest);
                 tvDescription.setText(R.string.desc_flash);
                 break;
             case "Flash Size":
                 selectedTool = ETestType.FlashSize;
+                imgOfTest.setImageResource(R.drawable.flashtest);
                 tvDescription.setText(R.string.desc_Size);
                 break;
             case "Walking Diagonal":
                 selectedTool = ETestType.Walking_Diagonal;
+                imgOfTest.setImageResource(R.drawable.diagonaltest);
                 tvDescription.setText(R.string.desc_diagonal);
                 break;
             case "Zig Zag":

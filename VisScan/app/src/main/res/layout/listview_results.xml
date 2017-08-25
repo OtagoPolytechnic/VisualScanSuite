@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
     android:descendantFocusability="blocksDescendants"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:paddingBottom="15dp"
+    android:paddingEnd="20dp"
+    android:paddingLeft="30dp"
+    android:paddingTop="15dp">
 
 
     <TextView
@@ -11,8 +15,18 @@
         android:layout_height="wrap_content"
         android:id="@+id/tvResultName"
         android:focusable="false"
-       android:layout_marginTop="20dp"
-        android:layout_marginBottom="20dp"
         android:textSize="30sp"
-        android:layout_marginStart="30dp" />
-</RelativeLayout>
+        android:layout_weight="1" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvDate"
+        android:textSize="30sp"
+        android:layout_alignBaseline="@+id/tvResultName"
+        android:layout_alignBottom="@+id/tvResultName"
+        android:layout_toEndOf="@+id/tvResultName"
+        android:layout_weight="1"
+        android:textAlignment="textEnd" />
+</LinearLayout>

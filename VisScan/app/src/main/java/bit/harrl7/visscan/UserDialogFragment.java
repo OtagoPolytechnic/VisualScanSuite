@@ -31,7 +31,7 @@ public class UserDialogFragment extends DialogFragment
         userIDText = (EditText)rootView.findViewById(R.id.editUserID);
         datePicker = (DatePicker)rootView.findViewById(R.id.datePicker);
         confirmID.setOnClickListener(new ButtonSubmitHandler());
-
+        getDialog().setCanceledOnTouchOutside(false);
         getDialog().setTitle("Personal Details");
         return rootView;
     }

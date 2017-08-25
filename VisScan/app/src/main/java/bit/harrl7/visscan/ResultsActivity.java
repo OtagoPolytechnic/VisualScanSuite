@@ -102,8 +102,6 @@ public class ResultsActivity extends AppCompatActivity {
         @Override
         public void onClick(View v)
         {
-            //TODO actually get it firing off emails
-           // Toast.makeText(ResultsActivity.this, "Email Sent", Toast.LENGTH_SHORT).show();
 
             String subject = Patient.userID + " Test Results";
             String message = "Here are the results for " + Patient.userID;
@@ -287,13 +285,12 @@ public class ResultsActivity extends AppCompatActivity {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id)
         {
-            //get the string of the listview item clicked
-            String selectedFile = parent.getItemAtPosition(position).toString();
-            Log.d("SELECTED", selectedFile);
+
+
             if(!resultFiles.get(position).isChosen())
             {
                 resultFiles.get(position).setChosen(true);
-                view.setBackgroundColor(Color.GREEN);
+                view.setBackgroundColor(Color.argb(255,100,221,23));
             }
             else
             {
@@ -301,8 +298,6 @@ public class ResultsActivity extends AppCompatActivity {
                 resultFiles.get(position).setChosen(false);
                 view.setBackgroundColor(Color.TRANSPARENT);
             }
-
-            Intent csvIntent = new Intent(Intent.ACTION_VIEW);
 
             ResultsList result = (ResultsList)parent.getAdapter().getItem(position);
 
@@ -398,9 +393,25 @@ public class ResultsActivity extends AppCompatActivity {
 
             ResultsList listOfResults = getItem(position);
 
+
             String fileName = listOfResults.getFileName();
+            int firstDash = fileName.indexOf('_');
+
+            String outputName = fileName.substring(firstDash + 1);
+            int secondUnderscore = outputName.indexOf('_');
+            String getItSon = outputName.substring(0, secondUnderscore);
+
+            int afterName = outputName.indexOf('_');
+            String dateName = outputName.substring(afterName);
+            String outputName2 = dateName.replace('-', ' ');
+            String noCSV = outputName2.replace(".csv", "");
+            String noUnderscore = noCSV.replace('_',' ');
+            int noseconds = noUnderscore.lastIndexOf(':');
+            String properOutput = String.valueOf(noUnderscore.subSequence(0, noseconds));
             TextView tvFileName = (TextView)v.findViewById(R.id.tvResultName);
-            tvFileName.setText(fileName);
+            TextView tvDate = (TextView)v.findViewById(R.id.tvDate);
+            tvDate.setText(properOutput);
+            tvFileName.setText(getItSon);
 
             return v;
 

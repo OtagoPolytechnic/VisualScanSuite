@@ -23,6 +23,7 @@ import android.graphics.Paint;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -46,6 +47,11 @@ public class GraphActivity extends AppCompatActivity {
     float percentageUpperRight;
     float percentageLowerLeft;
     float percentageLowerRight;
+    File resultsFolder;
+    String wholeFileName;
+    FileOutputStream outputStream;
+    SimpleDateFormat df;
+    Date date;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +81,24 @@ public class GraphActivity extends AppCompatActivity {
 
             setDrawingCacheEnabled(true);
             paint = new Paint();
+            String docsFolder = Environment.getExternalStorageDirectory().toString();
+            resultsFolder = new File(docsFolder +"/Graphs");
+            df = new SimpleDateFormat("dd-MMM-yy_HH:mm:ss");
+            date = new Date();
+            String fileTimeStamp = df.format(date);
+            wholeFileName = Patient.getUserID() + "_" + Patient.getDOB() + "-" +  fileTimeStamp + ".jpg";
+
+            try
+            {
+                outputStream = new FileOutputStream(resultsFolder + "/" + wholeFileName);
+            }
+            catch(FileNotFoundException e)
+            {
+                Log.e("FIle not found", "NOT FOUND");
+            }
+
+
+
             CheckQuadrant();
 
         }
@@ -99,19 +123,19 @@ public class GraphActivity extends AppCompatActivity {
                 Float xPos = (float)t.pos.x / 100 * bounds.x;
                 Float yPos = (float)t.pos.y /100 * bounds.y;
 
-
-
                 //if missed, draw red.. subject to change
                 if(!t.hit)
                 {
+
                     paint.setColor(Color.RED);
+                    paint.setAlpha(150);
                     canvas.drawCircle(xPos,yPos,50f, paint);
                 }
                 else
                 {
                     //draw white circles
                     paint.setColor(Color.WHITE);
-
+                    paint.setAlpha(200);
                     canvas.drawCircle(xPos,yPos,50f, paint);
                 }
 
@@ -122,29 +146,29 @@ public class GraphActivity extends AppCompatActivity {
             canvas.drawLine((float)(bounds.x /2),0.0f, (float)(bounds.x/2),(float)(bounds.y), paint);
             canvas.drawLine(0.0f,(float)(bounds.y/2), (float)(bounds.x),(float)(bounds.y /2), paint);
 
-            // Storage dir
-            String docsFolder = Environment.getExternalStorageDirectory().toString();
+            try
+            {
+                getDrawingCache().compress(Bitmap.CompressFormat.JPEG, 100, outputStream); //outputs the canvas to jpg in graphs folder
 
+            } catch (Exception e) {
+                Log.e("Didn't save.", e.toString());
+            }
+
+            GoToNextActivity();
+
+            if (Build.VERSION.SDK_INT != Build.VERSION_CODES.M)
+                canvas.restore();
+        }
+
+        public void GoToNextActivity()
+        {
             // Outer folder, make if doesn't exist already
-            File resultsFolder = new File(docsFolder +"/Graphs");
+
             if(!resultsFolder.exists())
             {
                 resultsFolder.mkdirs();
             }
 
-            SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yy_HH:mm:ss");
-            String fileTimeStamp = df.format(new Date());
-            String wholeFileName = Patient.getUserID() + "_" + Patient.getDOB() + "-" +  fileTimeStamp + ".jpg";
-            try
-            {
-
-
-                getDrawingCache().compress(Bitmap.CompressFormat.JPEG, 100, new FileOutputStream(resultsFolder + "/" + wholeFileName)); //outputs the canvas to jpg in graphs folder
-
-
-            } catch (Exception e) {
-                Log.e("Didn't save.", e.toString());
-            }
 
 
             Bitmap graphToShow;
@@ -164,9 +188,6 @@ public class GraphActivity extends AppCompatActivity {
             graphImageViewShow.putExtra("lowerLeft", percentageLowerLeft);
             graphImageViewShow.putExtra("lowerRight", percentageLowerRight);
             startActivity(graphImageViewShow);
-
-            if (Build.VERSION.SDK_INT != Build.VERSION_CODES.M)
-                canvas.restore();
         }
 
         public void CheckQuadrant()
