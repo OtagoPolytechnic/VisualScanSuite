@@ -67,13 +67,59 @@ public class LocationFrag extends Fragment implements IVisualTest {
         squares = new ArrayList<ImageView>();
 
         //populate the smileys and triangles.
-        PopulateSmileys();
-        PopulateTriangles();
-        PopulateSquares();
+        //PopulateSmileys();
+        //PopulateTriangles();
+        //PopulateSquares();
+
+        DrawSmileys();
 
         //return the view
         return view;
 
+    }
+
+    public void DrawSmileys()
+    {
+        int xPos = 0;
+        int yPos = 0;
+        for(int i = 0; i < NUM_IMAGES; i++)
+        {
+
+            ImageView smileyIV = new ImageView(getActivity());
+
+            //set x and y
+            //smileyIV.setX(rGen.nextInt(bounds.x - INSET));
+            //smileyIV.setY(rGen.nextInt(bounds.y - INSET));
+
+            RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(WIDTH + 20,HEIGHT + 20);
+
+            smileyIV.setLayoutParams(layoutParams);
+
+
+            //xPos *= smileyIV.getWidth();
+
+                smileyIV.setX(xPos + smileyIV.getWidth() * i);
+                smileyIV.setY(yPos + smileyIV.getWidth() * i);
+
+                smileys.add(smileyIV);
+                //set the image view image to a smiley face
+                smileyIV.setImageResource(R.drawable.smiley);
+
+                //set the image view on click listener
+                smileyIV.setOnClickListener(new ShapeClickHandler());
+
+                int xStandardized= ((100*(int)smileyIV.getX())/bounds.x);
+                int yStandardized= ((100*(int)smileyIV.getY())/bounds.y);
+                LocationStimTrial stim = new LocationStimTrial(new Point(xStandardized, yStandardized), false);
+                hitPoints.add(stim);
+
+                //add the imageview to the layout
+
+
+            layout.addView(smileyIV);
+            //if it wasn't overlapping add to the array list of smiley faces
+
+        }
     }
 
     public void PopulateSmileys()
