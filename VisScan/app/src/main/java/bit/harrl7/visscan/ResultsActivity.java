@@ -1,10 +1,13 @@
 package bit.harrl7.visscan;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Point;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Environment;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
@@ -23,7 +26,10 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -37,6 +43,7 @@ public class ResultsActivity extends AppCompatActivity {
     Button btnDeleteResults;
     Button btnEmail;
     Button btnViewOnDevice;
+    Button btnGraph;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -47,6 +54,7 @@ public class ResultsActivity extends AppCompatActivity {
         btnDeleteResults = (Button)findViewById(R.id.btnDeleteResults);
         btnEmail = (Button)findViewById(R.id.btnSaveToEmail);
         btnViewOnDevice = (Button)findViewById(R.id.btnViewDevice);
+        btnGraph = (Button)findViewById(R.id.btnGraph);
 
         //set listview
         lvFiles = (ListView)findViewById(R.id.lvFiles);
@@ -84,6 +92,7 @@ public class ResultsActivity extends AppCompatActivity {
         btnDeleteResults.setOnClickListener(new ButtonDeleteHandler());
         btnEmail.setOnClickListener(new ButtonEmailHandler());
         btnViewOnDevice.setOnClickListener(new ButtonViewCSV());
+        btnGraph.setOnClickListener(new ButtonViewGraph());
 
     }
 
@@ -93,8 +102,6 @@ public class ResultsActivity extends AppCompatActivity {
         @Override
         public void onClick(View v)
         {
-            //TODO actually get it firing off emails
-            Toast.makeText(ResultsActivity.this, "Email Sent", Toast.LENGTH_SHORT).show();
 
             String subject = Patient.userID + " Test Results";
             String message = "Here are the results for " + Patient.userID;
@@ -119,15 +126,6 @@ public class ResultsActivity extends AppCompatActivity {
 
             emailIntent.putParcelableArrayListExtra(Intent.EXTRA_STREAM, uris);
             Intent mailer = Intent.createChooser(emailIntent, null);
-
-
-
-
-            //String fullpath =  path + "/" + resultFiles.get(0).getFileName();
-            //File file = new File(fullpath);
-            //Uri uri = Uri.parse("file://" + file.getAbsolutePath());
-
-            //emailIntent .putExtra(Intent.EXTRA_STREAM, uri);
 
             startActivity(mailer);
         }
@@ -173,19 +171,126 @@ public class ResultsActivity extends AppCompatActivity {
         }
     }
 
+    public class ButtonViewGraph implements View.OnClickListener
+    {
+
+        @Override
+        public void onClick(View v)
+        {
+            ReadingCSV readingAsync = new ReadingCSV(ResultsActivity.this); //start async task for reading the csv
+            readingAsync.execute();
+
+        }
+    }
+
+    private class ReadingCSV extends AsyncTask<Void, Void, ArrayList<FlashStimTrial>>
+    {
+        ProgressDialog dialog;
+
+        public ReadingCSV(ResultsActivity activity) {
+
+            dialog = new ProgressDialog(activity);
+            if(!this.dialog.isShowing())
+            {
+                this.dialog.show(); //showt the dialog
+            }
+            else
+            {
+                this.dialog.dismiss();
+            }
+        }
+        @Override
+        protected ArrayList<FlashStimTrial> doInBackground(Void... params)
+        {
+            ArrayList<FlashStimTrial> flashTrialsList = new ArrayList<FlashStimTrial>();
+            BufferedReader br = null;
+            String line = "";
+            String cvsSplitBy = ",";
+
+            for(ResultsList result : resultFiles)
+            {
+                if(result.isChosen())
+                {
+
+                    try {
+
+                        br = new BufferedReader(new FileReader(new File(path + "/" + result.getFileName()).getAbsoluteFile()));
+                        int iteration = 0;
+                        while ((line = br.readLine()) != null)
+                        {
+                            if(iteration == 0)  //as to not do the title line of the csv
+                            {
+                                iteration++;
+                                continue;
+                            }
+
+                            // use comma as separator
+                            String[] data = line.split(cvsSplitBy);
+
+                            Point position = new Point(Integer.valueOf(data[0]),Integer.valueOf(data[1])); //save the point data x and y
+                            boolean wasHit = Boolean.valueOf(data[2]); //save the true or false if it was hit
+                            FlashStimTrial individualTrial = new FlashStimTrial(position, wasHit); //create new flash stim (SUBJECT TO CHANGE)
+                            individualTrial.hit = wasHit;   //set its hit bool to the boolean value from the csv
+                            flashTrialsList.add(individualTrial); //add to the arraylist of flash stims.
+
+                        }
+
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    } finally {
+                        if (br != null) {
+                            try {
+                                br.close();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+                }
+            }
+
+            return flashTrialsList;
+        }
+
+        @Override
+        protected void onPostExecute(ArrayList<FlashStimTrial> results)
+        {
+            if (dialog.isShowing()) {
+                //dialog.dismiss();
+            }
+
+            Intent graphIntent = new Intent(ResultsActivity.this, GraphActivity.class); //go to the output graph display
+
+            graphIntent.putParcelableArrayListExtra("graphDataToPlot", results);
+
+            startActivity(graphIntent);
+        }
+
+        @Override
+        protected void onPreExecute()
+        {
+            this.dialog.setMessage("Generating Graph... Please wait");
+            this.dialog.show();
+        }
+
+        @Override
+        protected void onProgressUpdate(Void... values) {}
+    }
+
     public class ListViewListener implements AdapterView.OnItemClickListener
     {
 
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id)
         {
-            //get the string of the listview item clicked
-            String selectedFile = parent.getItemAtPosition(position).toString();
-            Log.d("SELECTED", selectedFile);
+
+
             if(!resultFiles.get(position).isChosen())
             {
                 resultFiles.get(position).setChosen(true);
-                view.setBackgroundColor(Color.GREEN);
+                view.setBackgroundColor(Color.argb(255,100,221,23));
             }
             else
             {
@@ -194,17 +299,10 @@ public class ResultsActivity extends AppCompatActivity {
                 view.setBackgroundColor(Color.TRANSPARENT);
             }
 
-            Intent csvIntent = new Intent(Intent.ACTION_VIEW);
-
             ResultsList result = (ResultsList)parent.getAdapter().getItem(position);
 
             Log.d("RESULT NAME", result.fileName);
             Log.d("RESULT BOOl", String.valueOf(result.chosen));
-
-            //File csvFile = new File(path + "/" + selectedFile);
-            //csvIntent.setDataAndType(Uri.fromFile(csvFile), "text/csv");
-
-            //startActivity(csvIntent);
 
         }
     }
@@ -295,9 +393,25 @@ public class ResultsActivity extends AppCompatActivity {
 
             ResultsList listOfResults = getItem(position);
 
+
             String fileName = listOfResults.getFileName();
+            int firstDash = fileName.indexOf('_');
+
+            String outputName = fileName.substring(firstDash + 1);
+            int secondUnderscore = outputName.indexOf('_');
+            String getItSon = outputName.substring(0, secondUnderscore);
+
+            int afterName = outputName.indexOf('_');
+            String dateName = outputName.substring(afterName);
+            String outputName2 = dateName.replace('-', ' ');
+            String noCSV = outputName2.replace(".csv", "");
+            String noUnderscore = noCSV.replace('_',' ');
+            int noseconds = noUnderscore.lastIndexOf(':');
+            String properOutput = String.valueOf(noUnderscore.subSequence(0, noseconds));
             TextView tvFileName = (TextView)v.findViewById(R.id.tvResultName);
-            tvFileName.setText(fileName);
+            TextView tvDate = (TextView)v.findViewById(R.id.tvDate);
+            tvDate.setText(properOutput);
+            tvFileName.setText(getItSon);
 
             return v;
 

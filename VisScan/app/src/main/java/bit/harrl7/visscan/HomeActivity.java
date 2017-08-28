@@ -10,6 +10,9 @@ import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class HomeActivity extends AppCompatActivity {
 
     //public static String userID;
@@ -31,27 +34,44 @@ public class HomeActivity extends AppCompatActivity {
         btnResults.setOnClickListener(new ButtonHandler());
         btnSwitchUser.setOnClickListener(new ButtonHandler());
 
-        if(Patient.userID == null)
+        if((Patient.userID == null) || (Patient.dob == null))
         {
             StartUserIDFragment();
         }
         else
         {
-            tvUserID.setText("Logged in as " + Patient.getUserID());
+            tvUserID.setText("Logged in as: " + Patient.getUserID());
         }
 
     }
 
     public void setUserID(String inputUserID)
     {
-
+        tvUserID.setVisibility(View.VISIBLE);
         Patient.setUserID(inputUserID.trim());
+    }
+
+    public void setUserDOB(int day, int month, int year)
+    {
+        StringBuilder bDayString = new StringBuilder();
+
+        bDayString.append(day);
+        bDayString.append("-");
+        bDayString.append(month);
+        bDayString.append("-");
+        bDayString.append(year);
+
+        tvUserID.setVisibility(View.VISIBLE);
+        Patient.setDate(String.valueOf(bDayString));
         tvUserID.setText("Logged in as " + Patient.getUserID());
+
+        //tvUserID.setText("Logged in as " + Patient.getUserID());
     }
 
     public void StartUserIDFragment()
     {
         FragmentManager fm = getFragmentManager();
+        tvUserID.setVisibility(View.INVISIBLE);
         UserDialogFragment dialogFragment = new UserDialogFragment ();
         dialogFragment.show(fm, "User ID Fragment");
     }

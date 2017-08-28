@@ -9,7 +9,7 @@ public enum ETestType
     Flash,
     FlashSize,
     Wander,
-    Peripherial,
+    Peripheral,
     ZigZag,
     ShapeCancellation,
     Contrast,

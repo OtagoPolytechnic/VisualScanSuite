@@ -34,31 +34,8 @@ android:background="@android:color/black">
     android:orientation="vertical"
     android:layout_width="400dp"
     android:layout_height="match_parent"
-    android:background="#BBDEFB">
-
-    <Button
-        android:text="Start Test"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/btnStart"
-        android:padding="30dp"
-        android:layout_marginBottom="20dp"
-        android:textAppearance="@style/TextAppearance.AppCompat.Button"
-        android:textStyle="normal|bold"
-        android:background="#82B1FF"
-        android:textSize="30sp"/>
-
-    <Button
-        android:text="Vision Tools"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/btnBackToTools"
-        android:padding="30dp"
-        android:layout_marginBottom="20dp"
-        android:background="#82B1FF"
-        android:textAppearance="@style/TextAppearance.AppCompat.Button"
-        android:textStyle="normal|bold"
-        android:textSize="30sp"/>
+    android:background="#fafafa"
+    android:gravity="top|center_vertical">
 
     <Button
         android:text="Home Page"
@@ -67,23 +44,78 @@ android:background="@android:color/black">
         android:id="@+id/btnBackToHome"
         android:padding="30dp"
         android:layout_marginBottom="20dp"
-        android:background="#82B1FF"
+        android:background="@color/ButtonBlue"
+
         android:textAppearance="@style/TextAppearance.AppCompat.Button"
-        android:textStyle="normal|bold"
-        android:textSize="30sp"/>
+        android:textStyle="normal"
+        android:textSize="30sp"
+        android:textColor="@color/white"
+        android:drawableLeft="@android:drawable/ic_menu_revert" />
+
+    <Button
+        android:text="Vision Tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnBackToTools"
+        android:padding="30dp"
+        android:layout_marginBottom="20dp"
+        android:background="@color/ButtonBlue"
+        android:textAppearance="@style/TextAppearance.AppCompat.Button"
+        android:textStyle="normal"
+        android:textSize="30sp"
+        android:textColor="@color/white"
+        android:drawableLeft="@android:drawable/ic_menu_view" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:id="@+id/tvNameOfTest"
+        android:textSize="32sp"
+        android:layout_marginLeft="14dp"
+        android:textColor="?android:attr/textColorSecondary"
+        android:layout_marginTop="46dp" />
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginBottom="20dp"
+        android:background="@android:color/darker_gray"/>
+
+    <Button
+        android:text="Continue Test"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnStart"
+        android:padding="30dp"
+        android:layout_marginBottom="20dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Button"
+        android:textStyle="normal"
+        android:background="@color/ButtonBlue"
+        android:textSize="30sp"
+        android:textColor="@color/white"
+        android:fontFamily="sans-serif-medium"
+        android:drawableLeft="@android:drawable/ic_media_play"
+        android:gravity="center"
+        android:layout_gravity="center" />
 
     <Button
         android:text="Save Results"
-        android:layout_width="match_parent"
+        android:layout_width="320dp"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
+        android:layout_gravity="center"
         android:id="@+id/btnSave"
         android:padding="30dp"
+        android:drawableLeft="@android:drawable/ic_menu_save"
         android:layout_marginBottom="20dp"
-        android:background="#82B1FF"
+        android:background="@color/ButtonBlue"
         android:textAppearance="@style/TextAppearance.AppCompat.Button"
-        android:textStyle="normal|bold"
-        android:textSize="30sp"/>
+        android:textStyle="normal"
+        android:textSize="30sp"
+        android:textColor="@color/white"
+        android:gravity="center" />
 
 </LinearLayout>
 

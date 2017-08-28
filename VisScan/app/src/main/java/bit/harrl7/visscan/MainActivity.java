@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity
     private int updateDelay = 30;
 
     TextView tvPause;
+    TextView tvName;
     DrawerLayout drawer;
     ETestType selectTool;
     Intent chosenIntent;
@@ -65,6 +66,7 @@ public class MainActivity extends AppCompatActivity
 
         // Controls
         tvPause = (TextView) findViewById(R.id.tvPause);
+        tvName = (TextView)findViewById(R.id.tvNameOfTest);
 
         //Variable to check if user wants to save
         saveResults = false;
@@ -103,33 +105,41 @@ public class MainActivity extends AppCompatActivity
         switch (type)
         {
             case Flash:
+                tvName.setText("Flash Test");
                 dynamicFragment = new FlashStimFrag();
                 break;
             case FlashSize:
+                tvName.setText("Flash Size Test");
                 dynamicFragment= new FlashSizeFrag();
                 break;
                 
             case Wander:
+                tvName.setText("Wander Test");
                 dynamicFragment = new WanderStimFrag();
                 break;
                 
-            case Peripherial:
+            case Peripheral:
+                tvName.setText("Peripheral Test");
                 dynamicFragment = new PeripherialFlashFrag();
                 break;
 
             case Walking_Diagonal:
+                tvName.setText("Diagonal Test");
                 dynamicFragment = new WalkDiagonalFrag();
                 break;
 
             case ZigZag:
+                tvName.setText("Zigzag Test");
                 dynamicFragment = new ZigZagFrag();
                 break;
                 
             case ShapeCancellation:
+                tvName.setText("Cancellation Test");
                 dynamicFragment = new LocationFrag();
                 break;
                 
             case Contrast:
+                tvName.setText("Constrast Test");
                 dynamicFragment = new ContrastFrag();
                 break;
         }
@@ -165,8 +175,42 @@ public class MainActivity extends AppCompatActivity
             if(testFrag == null) { Toast.makeText(MainActivity.this, "No results to save", Toast.LENGTH_LONG).show(); }
             else
             {
-                saveResults = true;
-                OutputTestResults();
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                builder.setMessage("Are You Sure You Would Like To Save Your Results?.");
+                builder.setCancelable(true);
+
+
+                builder.setPositiveButton(
+                        "Yes",
+                        new DialogInterface.OnClickListener()
+                        {
+                            public void onClick(DialogInterface dialog, int id)
+                            {
+                                OutputTestResults();
+                                saveResults = true;
+                                Intent backToVisionTools = new Intent(MainActivity.this, ToolListActivity.class);
+                                startActivity(backToVisionTools);
+                                dialog.cancel();
+                            }
+                        });
+
+                builder.setNegativeButton(
+                        "No",
+                        new DialogInterface.OnClickListener()
+                        {
+                            public void onClick(DialogInterface dialog, int id)
+                            {
+
+                                dialog.cancel();
+                            }
+                        });
+
+                AlertDialog saveResultsDialog = builder.create();
+                saveResultsDialog.show();
+
+
+                //OutputTestResults();
+
             }
         }
     }
@@ -262,7 +306,7 @@ public class MainActivity extends AppCompatActivity
     //  Start the timer, run current fragment loop
     public void RunTimer()
     {
-        // testFrag = (IVisualTest) getFragmentManager().findFragmentById(R.id.fragment_container);
+         //testFrag = (IVisualTest) getFragmentManager().findFragmentById(R.id.fragment_container);
 
         timer = new Thread()
         {
