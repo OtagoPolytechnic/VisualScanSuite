@@ -4,7 +4,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="bit.harrl7.visscan.DisplayToolFrag"
+    tools:context="bit.harrl7.visscan.Activities.DisplayToolFrag"
     android:paddingRight="15dp"
     android:paddingTop="15dp"
     android:paddingBottom="15dp">

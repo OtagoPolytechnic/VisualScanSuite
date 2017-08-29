@@ -2,7 +2,6 @@ package bit.harrl7.visscan;
 
 
 import android.app.DialogFragment;
-import android.content.Intent;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,8 +11,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import bit.harrl7.visscan.Activities.HomeActivity;
 
 /**
  * Created by aberhjk1 on 5/06/2017.

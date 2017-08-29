@@ -1,4 +1,4 @@
-package bit.harrl7.visscan;
+package bit.harrl7.visscan.Tools;
 
 
 import android.graphics.Point;
@@ -14,6 +14,11 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+
+import bit.harrl7.visscan.Trial_Records.FlashStimTrial;
+import bit.harrl7.visscan.IVisualTest;
+import bit.harrl7.visscan.Activities.MainActivity;
+import bit.harrl7.visscan.R;
 
 
 /**

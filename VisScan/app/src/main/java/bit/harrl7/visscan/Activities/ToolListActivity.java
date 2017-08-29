@@ -1,4 +1,4 @@
-package bit.harrl7.visscan;
+package bit.harrl7.visscan.Activities;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
@@ -8,11 +8,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
+
+import bit.harrl7.visscan.R;
 
 public class ToolListActivity extends AppCompatActivity {
 

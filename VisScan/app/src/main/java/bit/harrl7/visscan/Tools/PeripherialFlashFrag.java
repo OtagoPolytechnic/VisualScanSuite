@@ -1,5 +1,4 @@
-package bit.harrl7.visscan;
-
+package bit.harrl7.visscan.Tools;
 
 import android.graphics.Point;
 import android.os.Bundle;
@@ -13,12 +12,17 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-/**
- * A simple {@link Fragment} subclass.
- */
-public class WalkDiagonalFrag extends Fragment implements IVisualTest
+import bit.harrl7.visscan.Enums.EFocusPoint;
+import bit.harrl7.visscan.IVisualTest;
+import bit.harrl7.visscan.Activities.MainActivity;
+import bit.harrl7.visscan.Trial_Records.PeripherialStimObject;
+import bit.harrl7.visscan.R;
+
+
+public class PeripherialFlashFrag extends Fragment implements IVisualTest
 {
-    //public enum EFocusPoint2 { TOP_LEFT, TOP_RIGHT, BOTTOM_LEFT, BOTTOM_RIGHT }
+
+    //public enum EFocusPoint { TOP_LEFT, TOP_RIGHT, BOTTOM_LEFT, BOTTOM_RIGHT }
 
     //Focus Points
     TextView focusPointTL;
@@ -42,13 +46,6 @@ public class WalkDiagonalFrag extends Fragment implements IVisualTest
 
     Point bounds;
 
-    //Need to keep track of stim location and start positions
-    Point stimLocation;
-    Point jumpDistance;
-    int rightLimit;
-    int bottomLimit;
-    int stimCount;
-
     //Only start activity once focus point is chosen
     boolean testStarted;
 
@@ -58,33 +55,25 @@ public class WalkDiagonalFrag extends Fragment implements IVisualTest
     private int cycleDelay;
     int cycleTick;
 
-    MainActivity activity;
-
-    public WalkDiagonalFrag()
+    public PeripherialFlashFrag()
     {
-        // Required empty public constructor
+        //Empty Constructor Required
     }
 
-
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState)
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_peripherial_flash, container, false);
 
         // Screen bounds for stim placement
-        activity = (MainActivity) getActivity();
-        bounds = activity.GetBounds();
+        MainActivity main = (MainActivity) getActivity();
+        bounds = main.GetBounds();
 
         focusPointTL = (TextView) v.findViewById(R.id.focusPointTL);
         focusPointTR = (TextView) v.findViewById(R.id.focusPointTR);
         focusPointBL = (TextView) v.findViewById(R.id.focusPointBL);
         focusPointBR = (TextView) v.findViewById(R.id.focusPointBR);
-        focusPointTL.setTag(EFocusPoint.TOP_LEFT);
-        focusPointTR.setTag(EFocusPoint.TOP_RIGHT);
-        focusPointBL.setTag(EFocusPoint.BOTTOM_LEFT);
-        focusPointBR.setTag(EFocusPoint.BOTTOM_RIGHT);
         introText = (TextView)v.findViewById(R.id.tvIntro);
 
         //set onClickListeners for focus points
@@ -101,11 +90,7 @@ public class WalkDiagonalFrag extends Fragment implements IVisualTest
         ivStim.setVisibility(View.GONE);
         stimContainer = (FrameLayout) v.findViewById(R.id.stimContainer);
 
-        stimLocation = new Point(0, 0);
-        rightLimit = bounds.x - ivStim.getWidth();
-        bottomLimit = bounds.y - ivStim.getHeight();
-        jumpDistance = GetJumpDistance();
-        stimCount = 0;
+
 
         // Stim record
         stimList = new ArrayList<>();
@@ -114,23 +99,12 @@ public class WalkDiagonalFrag extends Fragment implements IVisualTest
         int aSecond = (int) ((MainActivity) getActivity()).GetUpdateFreg();
         isDrawCycle = true;
         noShowRate = 0.05;
-        cycleDelay = aSecond * 1;
+        cycleDelay = aSecond * 2;
         cycleTick = cycleDelay;
 
         return v;
     }
 
-    private Point GetJumpDistance()
-    {
-        double xdJump = rightLimit * 0.1;
-        int xJump = (int)xdJump;
-        double ydJump = bottomLimit * 0.1;
-        int yJump = (int) ydJump;
-        Point jumpDistance = new Point(xJump, yJump);
-        return jumpDistance;
-    }
-
-    //Method to hide ball when the screen is tapped
     public class onScreenTapListener implements  View.OnClickListener
     {
         @Override
@@ -142,7 +116,6 @@ public class WalkDiagonalFrag extends Fragment implements IVisualTest
         }
     }
 
-    //Grabs focus point clicked and turns the rest off
     public class onFocusPointClickListener implements View.OnClickListener
     {
         @Override
@@ -150,44 +123,20 @@ public class WalkDiagonalFrag extends Fragment implements IVisualTest
         {
             stimContainer.setOnClickListener(new onScreenTapListener());
             HideFocusPoints();
-            //Use the view passed in to find what was clicked
             TextView selectedTV = (TextView) v.findViewById(v.getId());
             selectedTV.setVisibility(View.VISIBLE);
-
-            //Set the focus to what the user selected
-            currentFocus = (EFocusPoint)selectedTV.getTag();
-            //Get starting stim location
-            switch(currentFocus)
-            {
-                case TOP_LEFT:
-                    stimLocation = new Point(0,0);
-                    break;
-                case TOP_RIGHT:
-                    stimLocation = new Point(rightLimit, 0);
-                    break;
-                case BOTTOM_LEFT:
-                    stimLocation = new Point(0, bottomLimit);
-                    break;
-                case BOTTOM_RIGHT:
-                    stimLocation = new Point(rightLimit, bottomLimit);
-                    break;
-            }
 
             introText.setVisibility(View.GONE);
             StartStimulus();
         }
     }
 
-
-
-    //Makes the ball visable and allows it to start moving
     public void StartStimulus()
     {
         ivStim.setVisibility(View.VISIBLE);
         testStarted = true;
     }
 
-    //Hides every focus point
     public void HideFocusPoints()
     {
         focusPointTL.setVisibility(View.GONE);
@@ -224,66 +173,39 @@ public class WalkDiagonalFrag extends Fragment implements IVisualTest
         {
             // On rest cycle: hide stim, print previous stim record
             ivStim.setVisibility(View.GONE);
+            //if(currentStim != null) { tv.setText(currentStim.ToCsv()); }
         }
     }
 
     // Move the stim and create a new record
     public void MoveStim()
     {
-        //Move stimulus only the length of the screen
-        if(stimCount < 10)
-        {
-            int x = 0;
-            int y = 0;
-            if(currentFocus == EFocusPoint.TOP_LEFT)
-            {
-                x  = stimLocation.x + jumpDistance.x;
-                y = stimLocation.y + jumpDistance.y;
-            }
-            else if(currentFocus == EFocusPoint.TOP_RIGHT)
-            {
-                x  = stimLocation.x - jumpDistance.x;
-                y = stimLocation.y + jumpDistance.y;
-            }
-            else if(currentFocus == EFocusPoint.BOTTOM_LEFT)
-            {
-                x  = stimLocation.x + jumpDistance.x;
-                y = stimLocation.y - jumpDistance.y;
-            }
-            else
-            {
-                x  = stimLocation.x - jumpDistance.x;
-                y = stimLocation.y - jumpDistance.y;
-            }
+        // RNG for stim position and noShow trials
+        int x = (int) (Math.random() * (bounds.x-ivStim.getWidth()));
+        int y = (int) (Math.random() * (bounds.y-ivStim.getHeight()));
+        //Standardizing screen dimensions out of 100 X and y.
+        int xStandardized= ((100*x)/bounds.x);
+        int yStandardized= ((100*y)/bounds.y);
 
-            int xStandardized= ((100*x)/bounds.x);
-            int yStandardized= ((100*y)/bounds.y);
+        boolean showTrial = (Math.random() > noShowRate);
 
-            stimLocation = new Point(x, y);
 
-            // Set padding of stim container to move stim
-            stimContainer.setPadding(x, y, 0, 0);
+        // Set padding of stim container to move stim
+        stimContainer.setPadding(x, y, 0, 0);
 
-            // Create new stim as current stim
-            currentStim = new PeripherialStimObject(new Point(xStandardized,yStandardized), true, currentFocus.toString());
-            stimList.add(currentStim);
+        // Create new stim as current stim
+        currentStim = new PeripherialStimObject(new Point(xStandardized,yStandardized), showTrial, currentFocus.toString());
+        stimList.add(currentStim);
 
-            ivStim.setVisibility(View.VISIBLE);
+        // If show trial, show stim
+        if(showTrial) { ivStim.setVisibility(View.VISIBLE); }
 
-            //increment stimCount
-            stimCount++;
-        }
-        else
-        {
-            //TODO: Pause tool and open drawer options
-            activity.OpenDrawer();
-        }
     }
 
     @Override
     public String ToCSV()
     {
-        String s = "X, Y, Hit, Shown, Focus Point,\r\n";
+        String s = "Focus Point, X, Y, Hit, Shown\r\n";
 
         for(Object item : stimList)
         {
@@ -297,6 +219,6 @@ public class WalkDiagonalFrag extends Fragment implements IVisualTest
     @Override
     public String GetTestType()
     {
-        return "Peripheral";
+        return "Peripherial";
     }
 }

@@ -1,8 +1,6 @@
-package bit.harrl7.visscan;
+package bit.harrl7.visscan.Trial_Records;
 
 import android.graphics.Point;
-import android.graphics.Rect;
-import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Parcelable;
 

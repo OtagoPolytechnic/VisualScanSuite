@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/layout"
-    tools:context="bit.harrl7.visscan.LocationFrag">
+    tools:context="bit.harrl7.visscan.Tools.LocationFrag">
 
     <!-- TODO: Update blank fragment layout -->
 

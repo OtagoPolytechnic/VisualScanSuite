@@ -1,4 +1,4 @@
-package bit.harrl7.visscan;
+package bit.harrl7.visscan.Trial_Records;
 
 import android.graphics.Point;
 

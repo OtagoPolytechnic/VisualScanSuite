@@ -1,4 +1,4 @@
-package bit.harrl7.visscan;
+package bit.harrl7.visscan.Activities;
 
 
 import android.content.Intent;
@@ -10,6 +10,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import bit.harrl7.visscan.Activities.MainActivity;
+import bit.harrl7.visscan.Enums.ETestType;
+import bit.harrl7.visscan.R;
 
 
 /**

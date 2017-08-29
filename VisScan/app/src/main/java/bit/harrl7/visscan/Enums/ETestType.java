@@ -1,4 +1,4 @@
-package bit.harrl7.visscan;
+package bit.harrl7.visscan.Enums;
 
 /**
  * Created by aberhjk1 on 5/06/2017.

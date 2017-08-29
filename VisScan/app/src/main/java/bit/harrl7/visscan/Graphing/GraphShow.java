@@ -1,4 +1,4 @@
-package bit.harrl7.visscan;
+package bit.harrl7.visscan.Graphing;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -14,9 +14,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.text.DecimalFormat;
-import java.util.ArrayList;
+
+import bit.harrl7.visscan.Activities.ResultsActivity;
+import bit.harrl7.visscan.Patient;
+import bit.harrl7.visscan.R;
 
 public class GraphShow extends AppCompatActivity {
 

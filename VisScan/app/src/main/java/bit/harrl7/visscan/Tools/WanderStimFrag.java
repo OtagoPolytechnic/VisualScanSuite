@@ -1,19 +1,22 @@
-package bit.harrl7.visscan;
+package bit.harrl7.visscan.Tools;
 
 
 import android.graphics.Point;
 import android.os.Bundle;
 import android.app.Fragment;
-import android.util.Size;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import java.util.ArrayList;
+
+import bit.harrl7.visscan.IVisualTest;
+import bit.harrl7.visscan.Activities.MainActivity;
+import bit.harrl7.visscan.R;
+import bit.harrl7.visscan.Trial_Records.WanderStimTrial;
 
 
 /**
