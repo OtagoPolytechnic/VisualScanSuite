@@ -87,6 +87,7 @@ public class MainActivity extends AppCompatActivity
         // Drawer
         drawer = (DrawerLayout) findViewById(R.id.activity_flash_stim);
         drawer.setDrawerListener(new DrawSlidePauseHandler());
+        drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_OPEN);
 
         // Start button
         Button btnStart = (Button) findViewById(R.id.btnStart);
@@ -356,6 +357,7 @@ public class MainActivity extends AppCompatActivity
     // Open the drawer to end the current test
     public void OpenDrawer()
     {
+
         drawer.openDrawer(GravityCompat.START);
     }
 

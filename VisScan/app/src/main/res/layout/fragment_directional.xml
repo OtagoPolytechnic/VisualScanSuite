@@ -65,7 +65,7 @@
                     android:layout_height="wrap_content"
                     app:srcCompat="@drawable/direction"
                     android:id="@+id/ivDirStim"
-                    android:layout_centerInParent="true"/>
+                    android:layout_centerInParent="true" />
             </RelativeLayout>
 
             <RelativeLayout

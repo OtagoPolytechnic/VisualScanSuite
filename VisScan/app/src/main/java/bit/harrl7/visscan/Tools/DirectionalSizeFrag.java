@@ -17,7 +17,7 @@ import bit.harrl7.visscan.R;
  */
 public class DirectionalSizeFrag extends Fragment implements IVisualTest
 {
-    // Display
+
 
 
 
