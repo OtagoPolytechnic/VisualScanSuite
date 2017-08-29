@@ -27,10 +27,10 @@ public class WanderStimFrag extends Fragment implements IVisualTest
     Point bounds;
     ArrayList stimList;
 
-    private int turnDelay = 120;
+    private int turnDelay = 240;
     private int turnTick = turnDelay;
-    private  int velMin = -4;
-    private  int velRange = 8;
+    private  int velMin = 0;
+    private  int velRange = 12;
 
     private int flipDelay = 100;
     private  int unflipDelay = 50;
@@ -56,7 +56,7 @@ public class WanderStimFrag extends Fragment implements IVisualTest
         View v = inflater.inflate(R.layout.fragment_wander_stim, container, false);
 
         pos = new Point(0, 0);
-        vel = new Point(5, 0);
+        vel = new Point(10, 0);
 
         // Screen bounds for stim placement
         MainActivity main = (MainActivity) getActivity();
@@ -129,7 +129,7 @@ public class WanderStimFrag extends Fragment implements IVisualTest
                 flipped = true;
 
                 // Create new stim as current stim
-                currentStim = new WanderStimTrial(new Point(stimContainer.getPaddingLeft(), stimContainer.getPaddingTop()));
+                currentStim = new WanderStimTrial(new Point(stimContainer.getPaddingLeft(), stimContainer.getPaddingTop()), false);
 
                 // Change image to green stim
                 ivStim.setBackground(getResources().getDrawable(R.drawable.green_ball));
@@ -144,6 +144,12 @@ public class WanderStimFrag extends Fragment implements IVisualTest
                 flipped = false;
 
                 // Add previous stim trial to the list
+                if(currentStim.hit == false)
+                {
+                    int xStandardized= ((100*(int)ivStim.getX())/bounds.x);
+                    int yStandardized= ((100*(int)ivStim.getY())/bounds.y);
+                    currentStim.pos = new Point(xStandardized, yStandardized);
+                }
                 if(currentStim != null) stimList.add(currentStim);
 
                 // Change image to white stim
@@ -166,7 +172,11 @@ public class WanderStimFrag extends Fragment implements IVisualTest
             if(flipped)
             {
                 // Update position
-                currentStim.pos = new Point(stimContainer.getPaddingLeft(), stimContainer.getPaddingTop());
+
+                int xStandardized= ((100*(int)ivStim.getX())/bounds.x);
+                int yStandardized= ((100*(int)ivStim.getY())/bounds.y);
+
+                currentStim.pos = new Point(xStandardized, yStandardized);
                 currentStim.hit = true;
             }
 

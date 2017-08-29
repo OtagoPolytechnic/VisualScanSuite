@@ -31,7 +31,7 @@ import java.util.Date;
 
 public class GraphActivity extends AppCompatActivity {
 
-    public ArrayList<FlashStimTrial> trialsToShow;
+    public ArrayList<PlottableObject> trialsToShow;
     // Screen bounds for stim placement
     public Point bounds;
     Paint paint;
@@ -56,7 +56,7 @@ public class GraphActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ArrayList<FlashStimTrial> lists = this.getIntent().getParcelableArrayListExtra("graphDataToPlot"); //get the parcelable array list of flash stims
+        ArrayList<PlottableObject> lists = this.getIntent().getParcelableArrayListExtra("graphDataToPlot"); //get the parcelable array list of flash stims
 
         //code to get the width and height of screen
         DisplayMetrics displayMetrics = new DisplayMetrics();
@@ -118,7 +118,7 @@ public class GraphActivity extends AppCompatActivity {
             paint.setAntiAlias(true);
 
             //loop over the points and add to canvas.
-            for(FlashStimTrial t : trialsToShow)
+            for(PlottableObject t : trialsToShow)
             {
                 Float xPos = (float)t.pos.x / 100 * bounds.x;
                 Float yPos = (float)t.pos.y /100 * bounds.y;
@@ -193,7 +193,7 @@ public class GraphActivity extends AppCompatActivity {
         public void CheckQuadrant()
         {
 
-            for(FlashStimTrial f : trialsToShow)
+            for(PlottableObject f : trialsToShow) //loop over the plottable points and check which corner theyre in.
             {
                 Float xPosition = (float)f.pos.x / 100 * bounds.x;
                 Float yPosition = (float)f.pos.y /100 * bounds.y;
