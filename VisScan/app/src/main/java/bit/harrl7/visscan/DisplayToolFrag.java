@@ -101,10 +101,12 @@ public class DisplayToolFrag extends Fragment {
                 break;
             case "Shape Cancellation":
                 selectedTool = ETestType.ShapeCancellation;
+                imgOfTest.setImageResource(R.drawable.shapecancellation);
                 tvDescription.setText(R.string.desc_shape_cancel);
                 break;
             case "Contrast":
                 selectedTool = ETestType.Contrast;
+                imgOfTest.setImageResource(R.drawable.contrast);
                 tvDescription.setText(R.string.desc_contrast);
                 break;
             case "Peripherial":

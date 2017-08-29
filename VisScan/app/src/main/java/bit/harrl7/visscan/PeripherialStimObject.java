@@ -28,6 +28,6 @@ public class PeripherialStimObject
 
     public String ToCsv()
     {
-        return focusPoint+ "," + pos.x + "," + pos.y + "," + hit + "," + wasShown;
+        return pos.x + "," + pos.y + "," + hit + "," + wasShown +"," + focusPoint;
     }
 }
