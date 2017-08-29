@@ -21,7 +21,7 @@ import bit.harrl7.visscan.R;
  */
 public class DisplayToolFrag extends Fragment {
 
- TextView tvNameOfTool;
+    TextView tvNameOfTool;
     TextView tvDescription;
     Button btnStartTool;
     ImageView imgOfTest;
@@ -116,6 +116,11 @@ public class DisplayToolFrag extends Fragment {
             case "Peripherial":
                 selectedTool = ETestType.Peripheral;
                 tvDescription.setText(R.string.desc_peripheral);
+                break;
+            case "Directional":
+                selectedTool = ETestType.Directional;
+                imgOfTest.setImageResource(R.drawable.zigzag);
+                tvDescription.setText(R.string.desc_directional);
                 break;
             default:
                 selectedTool = ETestType.Error;

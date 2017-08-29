@@ -29,6 +29,8 @@ import bit.harrl7.visscan.IVisualTest;
 import bit.harrl7.visscan.Patient;
 import bit.harrl7.visscan.R;
 import bit.harrl7.visscan.Tools.ContrastFrag;
+import bit.harrl7.visscan.Tools.DirectionalFragment;
+import bit.harrl7.visscan.Tools.DirectionalSizeFrag;
 import bit.harrl7.visscan.Tools.FlashSizeFrag;
 import bit.harrl7.visscan.Tools.FlashStimFrag;
 import bit.harrl7.visscan.Tools.LocationFrag;
@@ -152,6 +154,11 @@ public class MainActivity extends AppCompatActivity
             case Contrast:
                 tvName.setText("Constrast Test");
                 dynamicFragment = new ContrastFrag();
+                break;
+
+            case Directional:
+                tvName.setText("Directional Test");
+                dynamicFragment = new DirectionalFragment();
                 break;
         }
 
