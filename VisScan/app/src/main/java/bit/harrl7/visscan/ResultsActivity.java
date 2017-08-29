@@ -183,7 +183,7 @@ public class ResultsActivity extends AppCompatActivity {
         }
     }
 
-    private class ReadingCSV extends AsyncTask<Void, Void, ArrayList<FlashStimTrial>>
+    private class ReadingCSV extends AsyncTask<Void, Void, ArrayList<PlottableObject>>
     {
         ProgressDialog dialog;
 
@@ -200,9 +200,9 @@ public class ResultsActivity extends AppCompatActivity {
             }
         }
         @Override
-        protected ArrayList<FlashStimTrial> doInBackground(Void... params)
+        protected ArrayList<PlottableObject> doInBackground(Void... params)
         {
-            ArrayList<FlashStimTrial> flashTrialsList = new ArrayList<FlashStimTrial>();
+            ArrayList<PlottableObject> plottableTrialsList = new ArrayList<PlottableObject>();
             BufferedReader br = null;
             String line = "";
             String cvsSplitBy = ",";
@@ -229,9 +229,9 @@ public class ResultsActivity extends AppCompatActivity {
 
                             Point position = new Point(Integer.valueOf(data[0]),Integer.valueOf(data[1])); //save the point data x and y
                             boolean wasHit = Boolean.valueOf(data[2]); //save the true or false if it was hit
-                            FlashStimTrial individualTrial = new FlashStimTrial(position, wasHit); //create new flash stim (SUBJECT TO CHANGE)
+                            PlottableObject individualTrial = new PlottableObject(position, wasHit); //create new flash stim (SUBJECT TO CHANGE)
                             individualTrial.hit = wasHit;   //set its hit bool to the boolean value from the csv
-                            flashTrialsList.add(individualTrial); //add to the arraylist of flash stims.
+                            plottableTrialsList.add(individualTrial); //add to the arraylist of flash stims.
 
                         }
 
@@ -251,11 +251,11 @@ public class ResultsActivity extends AppCompatActivity {
                 }
             }
 
-            return flashTrialsList;
+            return plottableTrialsList;
         }
 
         @Override
-        protected void onPostExecute(ArrayList<FlashStimTrial> results)
+        protected void onPostExecute(ArrayList<PlottableObject> results)
         {
             if (dialog.isShowing()) {
                 //dialog.dismiss();
@@ -393,14 +393,35 @@ public class ResultsActivity extends AppCompatActivity {
 
             ResultsList listOfResults = getItem(position);
 
-
             String fileName = listOfResults.getFileName();
+
+            String fileTypeName = GetTestTypeFileName(fileName);
+            String dateOfFile = GetDateFromFileName(fileName);
+
+            TextView tvFileName = (TextView)v.findViewById(R.id.tvResultName);
+            TextView tvDate = (TextView)v.findViewById(R.id.tvDate);
+            tvDate.setText(dateOfFile);
+            tvFileName.setText(fileTypeName);
+
+            return v;
+
+        }
+
+        public String GetTestTypeFileName(String fileName)
+        {
             int firstDash = fileName.indexOf('_');
 
             String outputName = fileName.substring(firstDash + 1);
             int secondUnderscore = outputName.indexOf('_');
-            String getItSon = outputName.substring(0, secondUnderscore);
+            String properOutputOfTestName = outputName.substring(0, secondUnderscore);
 
+            return properOutputOfTestName;
+        }
+
+        public String GetDateFromFileName(String fileName)
+        {
+            int firstDash = fileName.indexOf('_');
+            String outputName = fileName.substring(firstDash + 1);
             int afterName = outputName.indexOf('_');
             String dateName = outputName.substring(afterName);
             String outputName2 = dateName.replace('-', ' ');
@@ -408,13 +429,8 @@ public class ResultsActivity extends AppCompatActivity {
             String noUnderscore = noCSV.replace('_',' ');
             int noseconds = noUnderscore.lastIndexOf(':');
             String properOutput = String.valueOf(noUnderscore.subSequence(0, noseconds));
-            TextView tvFileName = (TextView)v.findViewById(R.id.tvResultName);
-            TextView tvDate = (TextView)v.findViewById(R.id.tvDate);
-            tvDate.setText(properOutput);
-            tvFileName.setText(getItSon);
 
-            return v;
-
+            return properOutput;
         }
     }
 

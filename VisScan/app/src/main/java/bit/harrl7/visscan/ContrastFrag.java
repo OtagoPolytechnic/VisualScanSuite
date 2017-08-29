@@ -48,23 +48,27 @@ public class ContrastFrag extends Fragment implements IVisualTest {
 
         //Array of stimulus objects.
         stimObject = new ArrayList<ContrastStimObject>();
-        /*
+
         rand = new Random();
         int top = 6;
         char data = ' ';
         String text = "";
 
 
-        for (int i=0; i<=top; i++) {
-            data = (char)(rand.nextInt(25)+97);
-            text = data + " " + text;
-        } */
+
 
         //add the words to the list and the stim objects
         for(int i = 0; i < NUM_WORDS; i++)
         {
+            text = "";
+            for (int j=0; j<=top; j++) {
+                data = (char)(rand.nextInt(25)+97);
+                text = data + " " + text;
 
-            wordsForListView.add("H E L L O");
+            }
+            String outputText= text.toUpperCase();
+
+            wordsForListView.add(outputText);
             stimObject.add(new ContrastStimObject(i * RGB_MULTIPLIER, false));
         }
 
@@ -79,7 +83,16 @@ public class ContrastFrag extends Fragment implements IVisualTest {
 
                 //set the rgb value of the textview to multiples of 24,  eg. 0,0,0 - 24,24,24 etc.
                 int rgb = position * RGB_MULTIPLIER;
-                ((TextView)view.findViewById(R.id.tvContrast)).setTextColor(Color.rgb(rgb, rgb, rgb));
+                if(rgb < 255)
+                {
+                    ((TextView)view.findViewById(R.id.tvContrast)).setTextColor(Color.rgb(rgb, rgb, rgb));
+                }
+                else
+                {
+                    rgb = 255;
+                    ((TextView)view.findViewById(R.id.tvContrast)).setTextColor(Color.rgb(rgb, rgb, rgb));
+                }
+
 
                 return view;
             };
@@ -104,13 +117,13 @@ public class ContrastFrag extends Fragment implements IVisualTest {
             TextView tv = (TextView)view.findViewById(R.id.tvContrast);
 
             //set the text to invisible
-            tv.setTextColor(Color.GREEN);
+            tv.setTextColor(Color.TRANSPARENT);
 
             //set the hit value to true
             stimObject.get(position).hit = true;
 
             //set the background color to green
-            view.setBackgroundColor(Color.GREEN);
+            view.setBackgroundColor(Color.LTGRAY);
 
         }
     }

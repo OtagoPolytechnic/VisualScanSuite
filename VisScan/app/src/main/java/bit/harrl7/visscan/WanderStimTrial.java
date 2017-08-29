@@ -11,10 +11,10 @@ public class WanderStimTrial
     public Point pos;
     public boolean hit;
 
-    public WanderStimTrial(Point pos)
+    public WanderStimTrial(Point pos, boolean hit)
     {
         this.pos = pos;
-        hit = false;
+        this.hit = hit;
     }
 
     public String ToCsv()

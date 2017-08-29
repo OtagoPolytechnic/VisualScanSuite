@@ -17,7 +17,7 @@ import android.widget.Toast;
 public class ToolListActivity extends AppCompatActivity {
 
     ListView lvTools;
-    String[] tools = {"Flash","Flash Size", "Wander", "Walking Diagonal", "Zig Zag", "Location Test", "Contrast"};  //TO BE ENUMS?
+    String[] tools = {"Flash","Flash Size", "Wander", "Walking Diagonal", "Zig Zag", "Shape Cancellation", "Contrast"};  //TO BE ENUMS?
 
 
     @Override

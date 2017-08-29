@@ -96,9 +96,10 @@ public class DisplayToolFrag extends Fragment {
                 break;
             case "Zig Zag":
                 selectedTool = ETestType.ZigZag;
+                imgOfTest.setImageResource(R.drawable.zigzag);
                 tvDescription.setText(R.string.desc_zigzig);
                 break;
-            case "Location Test":
+            case "Shape Cancellation":
                 selectedTool = ETestType.ShapeCancellation;
                 tvDescription.setText(R.string.desc_shape_cancel);
                 break;
