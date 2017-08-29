@@ -11,7 +11,7 @@
     android:paddingLeft="0dp"
     android:paddingRight="0dp"
     android:paddingTop="0dp"
-    tools:context="bit.harrl7.visscan.HomeActivity"
+    tools:context="bit.harrl7.visscan.Activities.HomeActivity"
     android:weightSum="1">
 
     <!-- Title -->

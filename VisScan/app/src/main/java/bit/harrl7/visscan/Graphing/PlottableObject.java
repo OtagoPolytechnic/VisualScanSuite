@@ -1,4 +1,4 @@
-package bit.harrl7.visscan;
+package bit.harrl7.visscan.Graphing;
 
 import android.graphics.Point;
 import android.os.Parcel;

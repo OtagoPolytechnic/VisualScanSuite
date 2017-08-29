@@ -1,4 +1,4 @@
-package bit.harrl7.visscan;
+package bit.harrl7.visscan.Activities;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -9,8 +9,6 @@ import android.graphics.Point;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Environment;
-import android.support.annotation.NonNull;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -21,7 +19,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,6 +31,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
+import bit.harrl7.visscan.Patient;
+import bit.harrl7.visscan.Graphing.PlottableObject;
+import bit.harrl7.visscan.R;
+import bit.harrl7.visscan.ResultsList;
 
 public class ResultsActivity extends AppCompatActivity {
 
@@ -304,8 +306,8 @@ public class ResultsActivity extends AppCompatActivity {
 
             ResultsList result = (ResultsList)parent.getAdapter().getItem(position);
 
-            Log.d("RESULT NAME", result.fileName);
-            Log.d("RESULT BOOl", String.valueOf(result.chosen));
+            Log.d("RESULT NAME", result.getFileName());
+            Log.d("RESULT BOOl", String.valueOf(result.isChosen()));
 
         }
     }

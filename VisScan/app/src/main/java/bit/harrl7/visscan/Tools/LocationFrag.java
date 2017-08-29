@@ -1,10 +1,8 @@
-package bit.harrl7.visscan;
+package bit.harrl7.visscan.Tools;
 
 
 import android.content.Context;
 import android.graphics.Point;
-import android.graphics.Rect;
-import android.location.LocationListener;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.os.Vibrator;
@@ -15,6 +13,11 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import java.util.ArrayList;
 import java.util.Random;
+
+import bit.harrl7.visscan.IVisualTest;
+import bit.harrl7.visscan.Trial_Records.LocationStimTrial;
+import bit.harrl7.visscan.Activities.MainActivity;
+import bit.harrl7.visscan.R;
 
 
 /**

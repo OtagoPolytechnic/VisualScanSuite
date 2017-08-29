@@ -1,4 +1,4 @@
-package bit.harrl7.visscan;
+package bit.harrl7.visscan.Tools;
 
 
 import android.app.Fragment;
@@ -13,6 +13,11 @@ import android.widget.RelativeLayout;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import bit.harrl7.visscan.IVisualTest;
+import bit.harrl7.visscan.Activities.MainActivity;
+import bit.harrl7.visscan.R;
+import bit.harrl7.visscan.Trial_Records.WanderStimTrial;
 
 
 /**

@@ -1,4 +1,4 @@
-package bit.harrl7.visscan;
+package bit.harrl7.visscan.Activities;
 
 import android.app.AlertDialog;
 import android.app.Fragment;
@@ -13,10 +13,8 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,6 +23,19 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import bit.harrl7.visscan.Enums.ETestType;
+import bit.harrl7.visscan.IVisualTest;
+import bit.harrl7.visscan.Patient;
+import bit.harrl7.visscan.R;
+import bit.harrl7.visscan.Tools.ContrastFrag;
+import bit.harrl7.visscan.Tools.FlashSizeFrag;
+import bit.harrl7.visscan.Tools.FlashStimFrag;
+import bit.harrl7.visscan.Tools.LocationFrag;
+import bit.harrl7.visscan.Tools.PeripherialFlashFrag;
+import bit.harrl7.visscan.Tools.WalkDiagonalFrag;
+import bit.harrl7.visscan.Tools.WanderStimFrag;
+import bit.harrl7.visscan.Tools.ZigZagFrag;
 
 import static android.view.View.*;
 

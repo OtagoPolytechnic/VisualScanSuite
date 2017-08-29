@@ -15,9 +15,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
+            android:name=".Activities.MainActivity"
             android:screenOrientation="landscape" />
-        <activity android:name=".HomeActivity">
+        <activity android:name=".Activities.HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -25,11 +25,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ToolListActivity"
+            android:name=".Activities.ToolListActivity"
             android:screenOrientation="landscape" />
-        <activity android:name=".ResultsActivity" />
-        <activity android:name=".GraphActivity" />
-        <activity android:name=".GraphShow" />
+        <activity android:name=".Activities.ResultsActivity" />
+        <activity android:name=".Activities.GraphActivity" />
+        <activity android:name=".Graphing.GraphShow" />
         <activity android:name=".NewContrast"></activity>
     </application>
 

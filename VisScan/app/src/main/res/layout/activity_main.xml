@@ -6,7 +6,7 @@ xmlns:tools="http://schemas.android.com/tools"
 android:id="@+id/activity_flash_stim"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
-tools:context="bit.harrl7.visscan.MainActivity"
+tools:context="bit.harrl7.visscan.Activities.MainActivity"
 android:background="@android:color/black">
 
 <RelativeLayout

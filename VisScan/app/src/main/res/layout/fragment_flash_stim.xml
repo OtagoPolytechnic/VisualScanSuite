@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="bit.harrl7.visscan.FlashStimFrag"
+    tools:context="bit.harrl7.visscan.Tools.FlashStimFrag"
     android:id="@+id/rl"
     android:background="@android:color/black">
 
