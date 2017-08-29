@@ -128,8 +128,11 @@ public class WanderStimFrag extends Fragment implements IVisualTest
                 flipTick = 0;
                 flipped = true;
 
+                int xStandardized= ((100*(int)ivStim.getX())/bounds.x);
+                int yStandardized= ((100*(int)ivStim.getY())/bounds.y);
+
                 // Create new stim as current stim
-                currentStim = new WanderStimTrial(new Point(stimContainer.getPaddingLeft(), stimContainer.getPaddingTop()), false);
+                currentStim = new WanderStimTrial(new Point(xStandardized, yStandardized), false);
 
                 // Change image to green stim
                 ivStim.setBackground(getResources().getDrawable(R.drawable.green_ball));

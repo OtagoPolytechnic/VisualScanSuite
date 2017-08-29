@@ -32,6 +32,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class ResultsActivity extends AppCompatActivity {
@@ -58,6 +59,7 @@ public class ResultsActivity extends AppCompatActivity {
 
         //set listview
         lvFiles = (ListView)findViewById(R.id.lvFiles);
+        lvFiles.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE_MODAL);
 
         //create results array list
         resultFiles = new ArrayList<>();
@@ -80,6 +82,7 @@ public class ResultsActivity extends AppCompatActivity {
 
         }
 
+        Collections.sort(resultFiles);
 
         //set adapter and pass it the list of tools and a custom layout (listviewlayout.xml)
         adapter = new CustomArrayAdapter(ResultsActivity.this, R.layout.listview_results, resultFiles);

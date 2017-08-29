@@ -28,8 +28,6 @@ public class LocationFrag extends Fragment implements IVisualTest {
     Random rGen;
     Point pos;
     ArrayList<ImageView> smileys;
-    ArrayList<ImageView> triangles;
-    ArrayList<ImageView> squares;
     RelativeLayout layout;
     Vibrator vibe;
 
@@ -66,7 +64,6 @@ public class LocationFrag extends Fragment implements IVisualTest {
 
         smileys = new ArrayList<ImageView>();
 
-
         DrawSmileys();
 
         //return the view
@@ -87,7 +84,7 @@ public class LocationFrag extends Fragment implements IVisualTest {
                 smileyIV.setLayoutParams(layoutParams);
 
                 smileyIV.setX(rows * (bounds.x / NUM_IMAGES));
-                smileyIV.setY(cols * (bounds.y /NUM_IMAGES + 10));
+                smileyIV.setY(cols * (bounds.y /NUM_IMAGES + 25));
 
                 smileys.add(smileyIV);
 
@@ -152,6 +149,11 @@ public class LocationFrag extends Fragment implements IVisualTest {
                 }
             }
 
+            if(vibe.hasVibrator())
+            {
+                vibe.vibrate(200);
+            }
+
 
         }
     }
@@ -163,15 +165,9 @@ public class LocationFrag extends Fragment implements IVisualTest {
         @Override
         public void onClick(View v)
         {
-            if(vibe.hasVibrator())
-            {
-                vibe.vibrate(300);
-            }
-
 
         }
     }
-
 
 
     @Override
@@ -185,10 +181,10 @@ public class LocationFrag extends Fragment implements IVisualTest {
         String s = "X, Y, Hit\r\n";
 
         //NEEDS TO CHANGE TO ALL HIT AND MISSED.
-        for(Object item : hitPoints)
+        for(LocationStimTrial item : hitPoints)
         {
-            LocationStimTrial stim = (LocationStimTrial) item;
-            s += stim.ToCsv() +"\r\n";
+
+            s += item.ToCsv() +"\r\n";
         }
 
         return s;

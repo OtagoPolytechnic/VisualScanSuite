@@ -169,8 +169,6 @@ public class GraphActivity extends AppCompatActivity {
                 resultsFolder.mkdirs();
             }
 
-
-
             Bitmap graphToShow;
 
             graphToShow = BitmapFactory.decodeFile(resultsFolder+ "/" + wholeFileName);

@@ -4,7 +4,7 @@ package bit.harrl7.visscan;
  * Created by aberhjk1 on 5/06/2017.
  */
 
-public class ResultsList
+public class ResultsList implements Comparable<ResultsList>
 {
     String fileName;
     boolean chosen;
@@ -14,6 +14,8 @@ public class ResultsList
         this.fileName = fileName;
         this.chosen = chosen;
     }
+
+
 
     public ResultsList()
     {
@@ -36,4 +38,8 @@ public class ResultsList
     }
 
 
+    @Override
+    public int compareTo(ResultsList o) {
+        return this.getFileName().compareTo(o.getFileName());
+    }
 }

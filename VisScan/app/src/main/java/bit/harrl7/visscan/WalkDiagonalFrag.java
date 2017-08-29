@@ -255,13 +255,17 @@ public class WalkDiagonalFrag extends Fragment implements IVisualTest
                 x  = stimLocation.x - jumpDistance.x;
                 y = stimLocation.y - jumpDistance.y;
             }
+
+            int xStandardized= ((100*x)/bounds.x);
+            int yStandardized= ((100*y)/bounds.y);
+
             stimLocation = new Point(x, y);
 
             // Set padding of stim container to move stim
             stimContainer.setPadding(x, y, 0, 0);
 
             // Create new stim as current stim
-            currentStim = new PeripherialStimObject(new Point(x,y), true, currentFocus.toString());
+            currentStim = new PeripherialStimObject(new Point(xStandardized,yStandardized), true, currentFocus.toString());
             stimList.add(currentStim);
 
             ivStim.setVisibility(View.VISIBLE);
@@ -279,7 +283,7 @@ public class WalkDiagonalFrag extends Fragment implements IVisualTest
     @Override
     public String ToCSV()
     {
-        String s = "Focus Point, X, Y, Hit, Shown\r\n";
+        String s = "X, Y, Hit, Shown, Focus Point,\r\n";
 
         for(Object item : stimList)
         {
@@ -293,6 +297,6 @@ public class WalkDiagonalFrag extends Fragment implements IVisualTest
     @Override
     public String GetTestType()
     {
-        return "Peripherial";
+        return "Peripheral";
     }
 }
