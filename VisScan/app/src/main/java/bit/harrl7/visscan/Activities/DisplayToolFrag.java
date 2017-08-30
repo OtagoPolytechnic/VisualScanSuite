@@ -119,7 +119,7 @@ public class DisplayToolFrag extends Fragment {
                 break;
             case "Directional":
                 selectedTool = ETestType.Directional;
-                imgOfTest.setImageResource(R.drawable.zigzag);
+                imgOfTest.setImageResource(R.drawable.directional);
                 tvDescription.setText(R.string.desc_directional);
                 break;
             default:
