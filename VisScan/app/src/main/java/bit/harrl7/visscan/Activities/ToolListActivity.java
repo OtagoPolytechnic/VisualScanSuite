@@ -17,7 +17,7 @@ import bit.harrl7.visscan.R;
 public class ToolListActivity extends AppCompatActivity {
 
     ListView lvTools;
-    String[] tools = {"Flash","Flash Size", "Wander", "Walking Diagonal", "Zig Zag", "Shape Cancellation", "Contrast"};  //TO BE ENUMS?
+    String[] tools = {"Flash", "Wander", "Walking Diagonal", "Zig Zag", "Shape Cancellation", "Contrast", "Directional"};  //TO BE ENUMS?
 
 
     @Override

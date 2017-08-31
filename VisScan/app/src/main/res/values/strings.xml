@@ -1,18 +1,19 @@
 <resources>
     <string name="app_name">Visual Test Suite</string>
-    <string name="stim_description" />
+    <string name="stim_description"/>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <!-- Tool descriptions -->
-    <string name="desc_flash">Flashes a stimulus at a random location on the screen, tap screen when you see it</string>
-    <string name="desc_Size">Flashes stimulus of random sizes and locations on the screen, tap screen when you see it</string>
-    <string name="desc_wander">A stimulus wanders around the screen, tap the screen when it changes colour</string>
-    <string name="desc_diagonal">Select a corner and focus on that point, tap the screen when you see a stimulus flash in your periphery</string>
+    <string name="desc_flash">Flashes a stimulus at a random location on the screen, tap screen when you see it.</string>
+    <string name="desc_Size">Flashes stimulus of random sizes and locations on the screen, tap screen when you see it.</string>
+    <string name="desc_wander">A stimulus wanders around the screen, tap the screen when it changes colour.</string>
+    <string name="desc_diagonal">Select a corner and focus on that point, tap the screen when you see a stimulus flash in your periphery.</string>
     <string name="desc_zigzig">Follow the stimulus with your eyes as it moves through a zigzag pattern. You can tap the screen to pause if you lose track.</string>
-    <string name="desc_shape_cancel">Tap the smiley faces you can see on the screen</string>
-    <string name="desc_contrast">Tap each line where you can read the text, starting from the top</string>
-    <string name="desc_peripheral">Tests the patients ability to see objects in their peripherial.\n\nThe patient must focus on the selected corner and tap the screen each time an object appears</string>
+    <string name="desc_shape_cancel">Tap the smiley faces you can see on the screen.</string>
+    <string name="desc_contrast">Tap each line where you can read the text, starting from the top.</string>
+    <string name="desc_peripheral">Tests the patients ability to see objects in their peripherial.\n\nThe patient must focus on the selected corner and tap the screen each time an object appears.</string>
+    <string name="desc_directional">Press the correct button that corresponds to the direction of the C image shown in the center.</string>
 
 </resources>

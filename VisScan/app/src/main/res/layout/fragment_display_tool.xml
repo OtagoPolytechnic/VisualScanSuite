@@ -53,32 +53,32 @@
                 android:textAlignment="center"
                 android:lineSpacingExtra="8sp" />
 
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/flashtest"
+                android:id="@+id/imgToolShow"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="30dp" />
+
+            <Button
+                android:text="Start Tool"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="30dp"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                android:id="@+id/btnStartTool"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentStart="true"
+                android:background="@color/ButtonBlue"
+                android:textColor="@color/white"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="46dp"
+                android:layout_weight="0.00" />
+
         </LinearLayout>
     </ScrollView>
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/flashtest"
-        android:id="@+id/imgToolShow"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="30dp" />
-
-    <Button
-        android:text="Start Tool"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="30dp"
-        android:textSize="30sp"
-        android:textStyle="bold"
-        android:id="@+id/btnStartTool"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentStart="true"
-        android:background="@color/ButtonBlue"
-        android:textColor="@color/white"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="46dp"
-        android:layout_weight="0.00" />
 
 </LinearLayout>

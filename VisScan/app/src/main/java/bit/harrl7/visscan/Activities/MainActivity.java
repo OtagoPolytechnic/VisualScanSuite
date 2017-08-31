@@ -29,6 +29,8 @@ import bit.harrl7.visscan.IVisualTest;
 import bit.harrl7.visscan.Patient;
 import bit.harrl7.visscan.R;
 import bit.harrl7.visscan.Tools.ContrastFrag;
+import bit.harrl7.visscan.Tools.DirectionalFragment;
+import bit.harrl7.visscan.Tools.DirectionalSizeFrag;
 import bit.harrl7.visscan.Tools.FlashSizeFrag;
 import bit.harrl7.visscan.Tools.FlashStimFrag;
 import bit.harrl7.visscan.Tools.LocationFrag;
@@ -85,6 +87,7 @@ public class MainActivity extends AppCompatActivity
         // Drawer
         drawer = (DrawerLayout) findViewById(R.id.activity_flash_stim);
         drawer.setDrawerListener(new DrawSlidePauseHandler());
+       // drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_OPEN);
 
         // Start button
         Button btnStart = (Button) findViewById(R.id.btnStart);
@@ -152,6 +155,11 @@ public class MainActivity extends AppCompatActivity
             case Contrast:
                 tvName.setText("Constrast Test");
                 dynamicFragment = new ContrastFrag();
+                break;
+
+            case Directional:
+                tvName.setText("Directional Test");
+                dynamicFragment = new DirectionalFragment();
                 break;
         }
 
@@ -349,6 +357,7 @@ public class MainActivity extends AppCompatActivity
     // Open the drawer to end the current test
     public void OpenDrawer()
     {
+
         drawer.openDrawer(GravityCompat.START);
     }
 

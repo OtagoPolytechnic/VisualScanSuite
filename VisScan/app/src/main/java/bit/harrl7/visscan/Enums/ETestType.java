@@ -14,5 +14,6 @@ public enum ETestType
     ShapeCancellation,
     Contrast,
     Walking_Diagonal,
+    Directional,
     Error
 }
