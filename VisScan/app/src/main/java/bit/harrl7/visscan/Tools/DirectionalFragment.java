@@ -11,21 +11,35 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import bit.harrl7.visscan.Activities.MainActivity;
 import bit.harrl7.visscan.IVisualTest;
 import bit.harrl7.visscan.R;
 
 /**
  * A simple {@link Fragment} subclass.
+ *
+ * Signal a direction using an image
+ * The user inputs a direction that matches the direction of the image
+ *
+ * Each round the img gets smaller
+ * A fixed number of trials are performed each round
  */
 public class DirectionalFragment extends Fragment  implements IVisualTest
 {
     ImageView stim;
 
     // Trail logic control
-    final int trialsPerCycle = 5;
+    final int trialsPerRound = 5;
     int trialCount;
-    float scale;
+
+    final float[] scaleArray = { 1.5f, 1.0f, 0.8f, 0.5f, 0.2f };
+
+    int[] hitsPerRound;
+    int round;
+    final int roundsPerTest = 5;
 
     public DirectionalFragment() { } // Required empty public constructor
 
@@ -41,8 +55,7 @@ public class DirectionalFragment extends Fragment  implements IVisualTest
         stim = (ImageView) v.findViewById(R.id.ivDirStim);
 
         // Control
-        trialCount = trialsPerCycle;
-        scale = 1;
+        reset();
 
         // Buttons
         ImageButton btnUp       = (ImageButton) v.findViewById(R.id.btnUp);
@@ -72,6 +85,7 @@ public class DirectionalFragment extends Fragment  implements IVisualTest
         }
     }
 
+    // Check user input against trial direction
     private void evaluateTrail(int btnId)
     {
         boolean correct = false;
@@ -94,7 +108,7 @@ public class DirectionalFragment extends Fragment  implements IVisualTest
                 break;
         }
 
-       // Toast.makeText(getActivity(), ""+correct, Toast.LENGTH_SHORT).show();
+       if(correct) hitsPerRound[round]++;
     }
 
     //Rescale stimulus
@@ -105,21 +119,21 @@ public class DirectionalFragment extends Fragment  implements IVisualTest
         stim.setRotation((stim.getRotation()+rotAngle)%360);
         trialCount--;
 
-        // Rescale after full set of trials
+        // Next round, rescale
         if(trialCount <= 0)
         {
-            scale -= 0.1;
+            round++;
+            stim.setScaleX(scaleArray[round]);
+            stim.setScaleY(scaleArray[round]);
 
-            stim.setScaleX(scale);
-            stim.setScaleY(scale);
+            trialCount = trialsPerRound;
 
-            trialCount = trialsPerCycle;
         }
 
         // End
-        if(scale < 0.2)
+        if(round >= roundsPerTest)
         {
-            reset();
+
 
             MainActivity mainActivity = (MainActivity) getActivity();
             mainActivity.OpenDrawer();
@@ -129,15 +143,14 @@ public class DirectionalFragment extends Fragment  implements IVisualTest
     // Initialise the stimulus
     private void reset()
     {
-        scale = 1;
-        stim.setScaleX(scale);
-        stim.setScaleY(scale);
+        stim.setScaleX(scaleArray[0]);
+        stim.setScaleY(scaleArray[0]);
 
-        trialCount = trialsPerCycle;
+        trialCount = trialsPerRound;
+
+        round = 0;
+        hitsPerRound = new int[roundsPerTest];
     }
-
-
-
 
 
 
@@ -152,7 +165,15 @@ public class DirectionalFragment extends Fragment  implements IVisualTest
     @Override
     public String ToCSV()
     {
-        return "X, Y, Z";
+        String csv = "Scale, hit, total \r\n";
+
+        for (int i=0; i<roundsPerTest; i++)
+        {
+            csv += scaleArray[i] + ", " + hitsPerRound[i] + ", " + trialsPerRound + "\r\n";
+        }
+
+        reset();
+        return csv;
     }
 
     @Override
