@@ -10,7 +10,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:background="@drawable/background_border"
 
         >
         <!--Left box (Solved)-->
@@ -41,6 +40,13 @@
             tools:listfooter="@android:drawable/bottom_bar" />
 
     </RelativeLayout>
+
+    <View
+        android:layout_height="match_parent"
+        android:background="@color/colorDark"
+        android:layout_width="2dp">
+    </View>
+
 
     <RelativeLayout
         android:layout_width="match_parent"
