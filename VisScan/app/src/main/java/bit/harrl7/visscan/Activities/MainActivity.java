@@ -24,6 +24,8 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+
+import bit.harrl7.visscan.DialogFragments.SaveResultsDialog;
 import bit.harrl7.visscan.Enums.ETestType;
 import bit.harrl7.visscan.IVisualTest;
 import bit.harrl7.visscan.Patient;
@@ -259,13 +261,23 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+    // === Return to home
+    public void ReturnToHomeActivity()
+    {
+        startActivity(new Intent(MainActivity.this, HomeActivity.class ));
+    }
+
     public void ShowSaveDialog()
     {
         if(saveResults)
         {
             startActivity(chosenIntent);
         }
-        else {
+        else
+        {
+
+            new SaveResultsDialog().show(getFragmentManager(), "");
+/*
             AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
             builder.setMessage("Would You Like To Save Your Results?.");
             builder.setCancelable(true);
@@ -295,7 +307,7 @@ public class MainActivity extends AppCompatActivity
                     });
 
             AlertDialog saveResultsDialog = builder.create();
-            saveResultsDialog.show();
+            saveResultsDialog.show();*/
         }
     }
 
