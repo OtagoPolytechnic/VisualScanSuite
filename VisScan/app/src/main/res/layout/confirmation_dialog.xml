@@ -1,49 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="wrap_content"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/colorDark"
+    android:background="@color/colorLight"
     android:padding="10dp">
 
-    <TextView
-        android:text="TextView"
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/tvMessage"
-        android:textSize="36sp"
-        android:textColor="@color/white"
-        />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/white">
-    </View>
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="10dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
         android:paddingLeft="20dp"
         android:paddingRight="20dp">
 
-        <Button
-            android:text="No"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/btnNegative"
-            android:layout_weight="1"
+        <TextView
+            android:text="Message"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvMessage"
             android:textSize="36sp"
-            android:textStyle="normal|bold" />
+            android:textColor="@color/colorDark"
+            />
 
-        <Button
-            android:text="Yes"
-            android:layout_width="wrap_content"
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorAccent">
+        </View>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/btnPositive"
-            android:layout_weight="1"
-            android:textSize="36sp"
-            android:textStyle="normal|bold" />
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:paddingTop="20dp">
+
+            <Button
+                android:text="No"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/btnNegative"
+                android:layout_weight="1"
+                android:textSize="40sp"
+                android:background="@drawable/btn_style"
+                android:layout_margin="10dp"
+                android:textColor="@color/colorLight" />
+
+            <Button
+                android:text="Yes"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/btnPositive"
+                android:layout_weight="1"
+                android:textSize="40sp"
+                android:background="@drawable/btn_style"
+                android:layout_margin="10dp"
+                android:textColor="@color/colorLight" />
+        </LinearLayout>
     </LinearLayout>
-</LinearLayout>
+
+</RelativeLayout>

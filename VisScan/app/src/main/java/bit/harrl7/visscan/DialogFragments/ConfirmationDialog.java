@@ -7,7 +7,9 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.app.DialogFragment;
 import android.app.Fragment;
+import android.util.DisplayMetrics;
 import android.util.TypedValue;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -56,6 +58,24 @@ public class ConfirmationDialog extends DialogFragment
 
         return d;
     }
+
+    @Override
+    public void onStart()
+    {
+        super.onStart();
+
+        Display display = getActivity().getWindowManager().getDefaultDisplay();
+        DisplayMetrics outMetrics = new DisplayMetrics ();
+        display.getMetrics(outMetrics);
+
+        float density  = getResources().getDisplayMetrics().density;
+        float dpHeight = outMetrics.heightPixels / density;
+        float dpWidth  = outMetrics.widthPixels / density;
+
+
+        getDialog().getWindow().setLayout((int) (dpWidth*1.5), ViewGroup.LayoutParams.WRAP_CONTENT );
+    }
+
 
     public class PositiveBtnClickHandler implements View.OnClickListener
     {
