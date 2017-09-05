@@ -1,5 +1,8 @@
 package bit.harrl7.visscan.DialogFragments;
 
+import android.util.DisplayMetrics;
+import android.view.Display;
+import android.view.ViewGroup;
 import android.widget.Toast;
 
 import bit.harrl7.visscan.Activities.MainActivity;
@@ -16,8 +19,8 @@ public class SaveResultsDialog extends ConfirmationDialog
         super.onStart();
 
         tvMessage.setText("Would You Like To Save Your Results?");
-    }
 
+    }
 
     @Override
     // === Positive action ===
