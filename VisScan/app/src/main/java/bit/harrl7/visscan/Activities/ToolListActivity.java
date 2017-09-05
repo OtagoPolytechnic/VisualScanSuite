@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
 import android.widget.ListView;
 
 import bit.harrl7.visscan.R;
@@ -17,6 +18,7 @@ import bit.harrl7.visscan.R;
 public class ToolListActivity extends AppCompatActivity {
 
     ListView lvTools;
+    ImageButton backToHomeButton;
     String[] tools = {"Flash", "Wander", "Walking Diagonal", "Zig Zag", "Shape Cancellation", "Contrast", "Directional"};  //TO BE ENUMS?
 
 
@@ -27,6 +29,9 @@ public class ToolListActivity extends AppCompatActivity {
 
         //get ref to listview
         lvTools = (ListView)findViewById(R.id.lvTools);
+        backToHomeButton = (ImageButton)findViewById(R.id.imgBtnBackToHome);
+
+        backToHomeButton.setOnClickListener(new BackToHomeButtonClickHandler());
 
         //set adapter and pass it the list of tools and a custom layout (listviewlayout.xml)
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.listviewlayout, tools);
@@ -36,6 +41,17 @@ public class ToolListActivity extends AppCompatActivity {
 
         //set the onClickListener for the listview
         lvTools.setOnItemClickListener(new ListViewListener());
+    }
+
+    public class BackToHomeButtonClickHandler implements ImageButton.OnClickListener
+    {
+
+        @Override
+        public void onClick(View v)
+        {
+            Intent homeIntent = new Intent(ToolListActivity.this, HomeActivity.class);
+            startActivity(homeIntent);
+        }
     }
 
     public class ListViewListener implements AdapterView.OnItemClickListener
