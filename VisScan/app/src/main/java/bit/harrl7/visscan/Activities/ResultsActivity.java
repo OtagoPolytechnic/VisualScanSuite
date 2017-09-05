@@ -19,6 +19,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -47,6 +48,7 @@ public class ResultsActivity extends AppCompatActivity {
     Button btnEmail;
     Button btnViewOnDevice;
     Button btnGraph;
+    ImageButton btnBackToHome;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -58,6 +60,7 @@ public class ResultsActivity extends AppCompatActivity {
         btnEmail = (Button)findViewById(R.id.btnSaveToEmail);
         btnViewOnDevice = (Button)findViewById(R.id.btnViewDevice);
         btnGraph = (Button)findViewById(R.id.btnGraph);
+        btnBackToHome = (ImageButton)findViewById(R.id.imgbtnBackHome);
 
         //set listview
         lvFiles = (ListView)findViewById(R.id.lvFiles);
@@ -98,7 +101,19 @@ public class ResultsActivity extends AppCompatActivity {
         btnEmail.setOnClickListener(new ButtonEmailHandler());
         btnViewOnDevice.setOnClickListener(new ButtonViewCSV());
         btnGraph.setOnClickListener(new ButtonViewGraph());
+        btnBackToHome.setOnClickListener(new ButtonBackHomeHandler());
 
+    }
+
+    public class ButtonBackHomeHandler implements View.OnClickListener
+    {
+
+        @Override
+        public void onClick(View v)
+        {
+            Intent homeIntent = new Intent(ResultsActivity.this, HomeActivity.class);
+            startActivity(homeIntent);
+        }
     }
 
     public class ButtonEmailHandler implements View.OnClickListener
