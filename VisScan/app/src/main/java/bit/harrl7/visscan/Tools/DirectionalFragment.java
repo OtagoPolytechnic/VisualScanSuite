@@ -138,6 +138,8 @@ public class DirectionalFragment extends Fragment  implements IVisualTest
         {
             MainActivity mainActivity = (MainActivity) getActivity();
             mainActivity.OpenDrawer();
+
+            reset();
         }
     }
 
