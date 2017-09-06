@@ -52,6 +52,7 @@ public class ConfirmationDialog extends DialogFragment
         btnNeg.setOnClickListener(new NegativeBtnClickHandler());
 
         builder.setView(v);
+        builder.setCancelable(false);
 
         Dialog d =  builder.create();
         d.setCancelable(false);

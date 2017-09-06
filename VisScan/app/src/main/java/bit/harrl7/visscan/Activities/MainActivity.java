@@ -276,7 +276,9 @@ public class MainActivity extends AppCompatActivity
         else
         {
 
-            new SaveResultsDialog().show(getFragmentManager(), "");
+            SaveResultsDialog saveDialog = new SaveResultsDialog();
+            saveDialog.setCancelable(false);
+            saveDialog.show(getFragmentManager(), "");
 /*
             AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
             builder.setMessage("Would You Like To Save Your Results?.");
