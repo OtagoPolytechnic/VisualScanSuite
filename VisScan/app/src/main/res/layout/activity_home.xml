@@ -17,12 +17,13 @@
     <!-- Title -->
 
     <!-- Button to go to settings -->
-    <LinearLayout
-        android:orientation="vertical"
+    <RelativeLayout
+        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="64dp"
         android:background="@color/ButtonBluePressed"
         android:layout_weight="0.21">
+
         <TextView
         android:text=""
         android:layout_width="wrap_content"
@@ -36,7 +37,18 @@
             android:layout_gravity="bottom|center_horizontal|center"
             android:layout_marginTop="16dp" />
 
-    </LinearLayout>
+        <ImageButton
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            app:srcCompat="@android:drawable/ic_delete"
+            android:id="@+id/imgCloseApp"
+            android:elevation="1dp"
+            android:background="@color/ButtonBluePressed"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true" />
+
+    </RelativeLayout>
 
 
     <!-- Button to go to results -->
@@ -94,7 +106,7 @@
     <!-- Button to go to list of tools -->
 
     <Button
-        android:text="LOG OUT"
+        android:text="Change User"
         android:layout_width="1158dp"
         android:layout_height="wrap_content"
         android:padding="30dp"
