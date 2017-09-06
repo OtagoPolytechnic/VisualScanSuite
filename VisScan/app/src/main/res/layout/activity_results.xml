@@ -23,7 +23,7 @@
         android:layout_height="match_parent"
         app:srcCompat="?attr/actionModeCloseDrawable"
         android:id="@+id/imgbtnBackHome"
-        android:background="@color/ButtonBlue"
+        android:background="@drawable/btn_style"
         android:layout_weight="0.06"
         android:cropToPadding="false"
         android:hapticFeedbackEnabled="false"
