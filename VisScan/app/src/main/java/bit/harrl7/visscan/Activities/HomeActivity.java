@@ -24,7 +24,7 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        ImageButton btnCloseApp = (ImageButton)findViewById(R.id.imgCloseApp);
+
         Button btnResults = (Button)findViewById(R.id.btnViewResults);
         Button btnToolList = (Button)findViewById(R.id.btnViewListOfTools);
         Button btnSwitchUser = (Button)findViewById(R.id.btnSwitchUser);
@@ -33,7 +33,7 @@ public class HomeActivity extends AppCompatActivity {
         btnToolList.setOnClickListener(new ButtonHandler());
         btnResults.setOnClickListener(new ButtonHandler());
         btnSwitchUser.setOnClickListener(new ButtonHandler());
-        btnCloseApp.setOnClickListener(new ButtonHandler());
+
 
         if((Patient.userID == null) || (Patient.dob == null))
         {
@@ -74,6 +74,7 @@ public class HomeActivity extends AppCompatActivity {
         FragmentManager fm = getFragmentManager();
         tvUserID.setVisibility(View.INVISIBLE);
         UserDialogFragment dialogFragment = new UserDialogFragment ();
+        dialogFragment.setCancelable(false);
         dialogFragment.show(fm, "User ID Fragment");
     }
 
@@ -96,9 +97,7 @@ public class HomeActivity extends AppCompatActivity {
                 case R.id.btnSwitchUser:
                     StartUserIDFragment();
                     break;
-                case R.id.imgCloseApp:
-                    System.exit(0); //close the app.
-                    break;
+
 
 
             }

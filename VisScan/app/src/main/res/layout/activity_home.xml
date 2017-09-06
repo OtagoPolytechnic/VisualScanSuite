@@ -37,17 +37,6 @@
             android:layout_gravity="bottom|center_horizontal|center"
             android:layout_marginTop="16dp" />
 
-        <ImageButton
-            android:layout_width="50dp"
-            android:layout_height="wrap_content"
-            app:srcCompat="@android:drawable/ic_delete"
-            android:id="@+id/imgCloseApp"
-            android:elevation="1dp"
-            android:background="@color/ButtonBluePressed"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentEnd="true" />
-
     </RelativeLayout>
 
 

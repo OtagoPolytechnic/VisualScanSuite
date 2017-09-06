@@ -33,6 +33,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import bit.harrl7.visscan.DialogFragments.NoItemsSelectedDialog;
 import bit.harrl7.visscan.Patient;
 import bit.harrl7.visscan.Graphing.PlottableObject;
 import bit.harrl7.visscan.R;
@@ -186,6 +187,13 @@ public class ResultsActivity extends AppCompatActivity {
             if(count > 1)
             {
                 Toast.makeText(ResultsActivity.this, "Please choose only one result", Toast.LENGTH_SHORT).show();
+            }
+
+            if(count == 0)
+            {
+                NoItemsSelectedDialog noItemsDialog = new NoItemsSelectedDialog();
+                noItemsDialog.setCancelable(false);
+                noItemsDialog.show(getFragmentManager(), "");
             }
 
         }
