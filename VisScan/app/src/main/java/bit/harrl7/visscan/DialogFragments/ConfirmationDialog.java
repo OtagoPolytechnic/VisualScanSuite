@@ -54,7 +54,8 @@ public class ConfirmationDialog extends DialogFragment
         builder.setView(v);
 
         Dialog d =  builder.create();
-        d.setCanceledOnTouchOutside(false);
+        d.setCancelable(false);
+
 
         return d;
     }
