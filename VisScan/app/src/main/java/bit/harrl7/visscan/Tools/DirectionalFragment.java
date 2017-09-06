@@ -158,10 +158,8 @@ public class DirectionalFragment extends Fragment  implements IVisualTest
 
 
     @Override
-    public void Run()
-    {
+    public void Run() { } // Empty run method as tool contains no timed logic
 
-    }
 
     @Override
     public String ToCSV()
