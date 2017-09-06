@@ -2,10 +2,12 @@ package bit.harrl7.visscan.Activities;
 
 import android.app.FragmentManager;
 import android.content.Intent;
+import android.media.Image;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import bit.harrl7.visscan.Patient;
@@ -22,8 +24,7 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-
-
+        ImageButton btnCloseApp = (ImageButton)findViewById(R.id.imgCloseApp);
         Button btnResults = (Button)findViewById(R.id.btnViewResults);
         Button btnToolList = (Button)findViewById(R.id.btnViewListOfTools);
         Button btnSwitchUser = (Button)findViewById(R.id.btnSwitchUser);
@@ -32,6 +33,7 @@ public class HomeActivity extends AppCompatActivity {
         btnToolList.setOnClickListener(new ButtonHandler());
         btnResults.setOnClickListener(new ButtonHandler());
         btnSwitchUser.setOnClickListener(new ButtonHandler());
+        btnCloseApp.setOnClickListener(new ButtonHandler());
 
         if((Patient.userID == null) || (Patient.dob == null))
         {
@@ -94,6 +96,10 @@ public class HomeActivity extends AppCompatActivity {
                 case R.id.btnSwitchUser:
                     StartUserIDFragment();
                     break;
+                case R.id.imgCloseApp:
+                    System.exit(0); //close the app.
+                    break;
+
 
             }
 

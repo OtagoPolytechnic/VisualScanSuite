@@ -50,7 +50,10 @@ android:background="@android:color/black">
         android:textStyle="normal"
         android:textSize="30sp"
         android:textColor="@color/white"
-        android:drawableLeft="@android:drawable/ic_menu_revert" />
+        android:drawableLeft="@android:drawable/ic_menu_revert"
+        android:layout_marginRight="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp" />
 
     <Button
         android:text="Vision Tools"
@@ -64,7 +67,9 @@ android:background="@android:color/black">
         android:textStyle="normal"
         android:textSize="30sp"
         android:textColor="@color/white"
-        android:drawableLeft="@android:drawable/ic_menu_view" />
+        android:drawableLeft="@android:drawable/ic_menu_view"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp" />
 
     <TextView
         android:text="TextView"

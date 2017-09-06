@@ -54,7 +54,7 @@
         android:ems="10"
         android:id="@+id/editUserID"
         android:layout_gravity="center_horizontal"
-        android:textColorHint="?attr/colorControlNormal"
+        android:textColorHint="#808080"
         android:singleLine="true"
         android:selectAllOnFocus="false"
         android:textColorLink="?attr/colorControlNormal"

@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity
         // Drawer
         drawer = (DrawerLayout) findViewById(R.id.activity_flash_stim);
         drawer.setDrawerListener(new DrawSlidePauseHandler());
-       // drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_OPEN);
+        //drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_OPEN);
 
         // Start button
         Button btnStart = (Button) findViewById(R.id.btnStart);
@@ -321,15 +321,21 @@ public class MainActivity extends AppCompatActivity
         @Override
         public void onDrawerOpened(View drawerView)
         {
-            if(timer != null) timer.interrupt();
-            tvPause.setVisibility(VISIBLE);
+            if(timer != null) timer.interrupt();        // Pause timer
+            tvPause.setVisibility(VISIBLE);             // Show Pause text
+
+            drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_OPEN);   // Lock drawer open
+        }
+
+        @Override
+        public void onDrawerClosed(View drawerView)
+        {
+            drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);  // Unlock drawer
         }
 
         @Override
         public void onDrawerSlide(View drawerView, float slideOffset) { }  // Empty
 
-        @Override
-        public void onDrawerClosed(View drawerView) { } // Empty
 
         @Override
         public void onDrawerStateChanged(int newState) { } // Empty
