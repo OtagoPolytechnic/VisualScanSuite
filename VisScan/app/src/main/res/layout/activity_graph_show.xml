@@ -29,7 +29,7 @@
         android:layout_width="300dp"
         android:textSize="24sp"
         android:id="@+id/btnSendEmail"
-        android:background="@color/ButtonBlue"
+        android:background="@drawable/btn_style"
         android:textColor="@color/white"
         android:layout_alignParentBottom="true"
         android:layout_alignStart="@+id/imgGraph" />
@@ -43,7 +43,7 @@
         android:textSize="24sp"
         android:id="@+id/btnBackToResults"
         android:elevation="0dp"
-        android:background="@color/ButtonBlue"
+        android:background="@drawable/btn_style"
         android:textColor="@color/white"
         android:layout_alignParentBottom="true"
         android:layout_alignEnd="@+id/imgGraph"
