@@ -35,11 +35,12 @@ public class DirectionalFragment extends Fragment  implements IVisualTest
     final int trialsPerRound = 5;
     int trialCount;
 
+    // Image scale for each round
     final float[] scaleArray = { 1.5f, 1.0f, 0.8f, 0.5f, 0.2f };
 
     int[] hitsPerRound;
     int round;
-    final int roundsPerTest = 5;
+    final int roundsPerTest = scaleArray.length;
 
     public DirectionalFragment() { } // Required empty public constructor
 
@@ -79,18 +80,16 @@ public class DirectionalFragment extends Fragment  implements IVisualTest
         @Override
         public void onClick(View v)
         {
-
-            evaluateTrail(v.getId());
-            rescaleStimulus();
+            evaluateTrial(v.getId());
+            runNextTrial();
         }
     }
 
     // Check user input against trial direction
-    private void evaluateTrail(int btnId)
+    private void evaluateTrial(int btnId)
     {
         boolean correct = false;
 
-        float x = stim.getRotation();
 
         switch (btnId)
         {
@@ -108,11 +107,12 @@ public class DirectionalFragment extends Fragment  implements IVisualTest
                 break;
         }
 
+        // Increment score
        if(correct) hitsPerRound[round]++;
     }
 
     //Rescale stimulus
-    private void rescaleStimulus()
+    private void runNextTrial()
     {
         // Rotate stimulus
         int rotAngle = 90 * (int)Math.ceil(Math.random()*3);
@@ -123,18 +123,19 @@ public class DirectionalFragment extends Fragment  implements IVisualTest
         if(trialCount <= 0)
         {
             round++;
+            trialCount = trialsPerRound;
+        }
+
+        // Rescale stim for next round
+        if(round < roundsPerTest)
+        {
             stim.setScaleX(scaleArray[round]);
             stim.setScaleY(scaleArray[round]);
 
-            trialCount = trialsPerRound;
 
         }
-
-        // End
-        if(round >= roundsPerTest)
+        else    // After final round, end test
         {
-
-
             MainActivity mainActivity = (MainActivity) getActivity();
             mainActivity.OpenDrawer();
         }
@@ -157,10 +158,8 @@ public class DirectionalFragment extends Fragment  implements IVisualTest
 
 
     @Override
-    public void Run()
-    {
+    public void Run() { } // Empty run method as tool contains no timed logic
 
-    }
 
     @Override
     public String ToCSV()
