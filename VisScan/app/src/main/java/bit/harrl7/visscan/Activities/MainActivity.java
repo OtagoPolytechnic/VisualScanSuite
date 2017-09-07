@@ -196,42 +196,7 @@ public class MainActivity extends AppCompatActivity
             if(testFrag == null) { Toast.makeText(MainActivity.this, "No results to save", Toast.LENGTH_LONG).show(); }
             else
             {
-                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-                builder.setMessage("Are You Sure You Would Like To Save Your Results?.");
-                builder.setCancelable(true);
-
-
-                builder.setPositiveButton(
-                        "Yes",
-                        new DialogInterface.OnClickListener()
-                        {
-                            public void onClick(DialogInterface dialog, int id)
-                            {
-                                OutputTestResults();
-                                saveResults = true;
-                                Intent backToVisionTools = new Intent(MainActivity.this, ToolListActivity.class);
-                                startActivity(backToVisionTools);
-                                dialog.cancel();
-                            }
-                        });
-
-                builder.setNegativeButton(
-                        "No",
-                        new DialogInterface.OnClickListener()
-                        {
-                            public void onClick(DialogInterface dialog, int id)
-                            {
-
-                                dialog.cancel();
-                            }
-                        });
-
-                AlertDialog saveResultsDialog = builder.create();
-                saveResultsDialog.show();
-
-
-                //OutputTestResults();
-
+                new SaveResultsDialog().show(getFragmentManager(), "");
             }
         }
     }
@@ -275,39 +240,7 @@ public class MainActivity extends AppCompatActivity
         }
         else
         {
-
             new SaveResultsDialog().show(getFragmentManager(), "");
-/*
-            AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-            builder.setMessage("Would You Like To Save Your Results?.");
-            builder.setCancelable(true);
-
-
-            builder.setPositiveButton(
-                    "Yes",
-                    new DialogInterface.OnClickListener()
-                    {
-                        public void onClick(DialogInterface dialog, int id)
-                        {
-                            OutputTestResults();
-                            startActivity(chosenIntent);
-                            dialog.cancel();
-                        }
-                    });
-
-            builder.setNegativeButton(
-                    "No",
-                    new DialogInterface.OnClickListener()
-                    {
-                        public void onClick(DialogInterface dialog, int id)
-                        {
-                            startActivity(chosenIntent);
-                            dialog.cancel();
-                        }
-                    });
-
-            AlertDialog saveResultsDialog = builder.create();
-            saveResultsDialog.show();*/
         }
     }
 
