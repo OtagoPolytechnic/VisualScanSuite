@@ -36,7 +36,7 @@ public class SaveResultsDialog extends ConfirmationDialog
     public void NegativeAction()
     {
         MainActivity activity = (MainActivity) getActivity();
-        
+
         activity.ReturnToHomeActivity();
 
         dismiss();
