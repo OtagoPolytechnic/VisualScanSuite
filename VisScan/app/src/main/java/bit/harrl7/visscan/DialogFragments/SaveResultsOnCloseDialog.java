@@ -1,23 +1,19 @@
 package bit.harrl7.visscan.DialogFragments;
 
-<<<<<<< HEAD
-import android.util.DisplayMetrics;
-import android.view.Display;
-import android.view.ViewGroup;
+import android.app.Activity;
+import android.content.Intent;
 import android.widget.Toast;
 
-=======
->>>>>>> SaveDialogUpdate
 import bit.harrl7.visscan.Activities.MainActivity;
 
 /**
  * Created by Liam on 04-Sep-17.
  *
  * Dialog to ask user if they would like to save results
- *
+ * before sending user to a new Activity
  */
 
-public class SaveResultsDialog extends ConfirmationDialog
+public class SaveResultsOnCloseDialog extends ConfirmationDialog
 {
     MainActivity activity;
 
@@ -26,16 +22,11 @@ public class SaveResultsDialog extends ConfirmationDialog
     {
         super.onStart();
 
-<<<<<<< HEAD
-        tvMessage.setText("Would You Like To Save Your Results?");
-=======
         activity = (MainActivity) getActivity();
 
-        tvMessage.setText("Are you sure you want to save and end the test?");
+        tvMessage.setText("Would You Like To Save Your Results?");
     }
->>>>>>> SaveDialogUpdate
 
-    }
 
     @Override
     // === Positive action ===
@@ -50,6 +41,7 @@ public class SaveResultsDialog extends ConfirmationDialog
     // === Negative action ===
     public void NegativeAction()
     {
+        activity.ReturnToHomeActivity();
         dismiss();
     }
 }

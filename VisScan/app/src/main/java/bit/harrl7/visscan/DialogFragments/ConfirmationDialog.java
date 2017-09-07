@@ -97,6 +97,11 @@ public class ConfirmationDialog extends DialogFragment
         }
     }
 
+    // === Set text ===
+    public void setMessage(String message)      { tvMessage.setText(message); }
+    public void setBtnPosText(String message)   { btnPos.setText(message); }
+    public void setBtnNegText(String message)   { btnNeg.setText(message); }
+
 
     // === Positive action ===
     public void PositiveAction() { }
