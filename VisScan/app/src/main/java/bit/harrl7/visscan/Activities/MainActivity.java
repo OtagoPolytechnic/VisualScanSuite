@@ -240,45 +240,9 @@ public class MainActivity extends AppCompatActivity
         }
         else
         {
-<<<<<<< HEAD
-
             SaveResultsDialog saveDialog = new SaveResultsDialog();
             saveDialog.setCancelable(false);
             saveDialog.show(getFragmentManager(), "");
-/*
-            AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-            builder.setMessage("Would You Like To Save Your Results?.");
-            builder.setCancelable(true);
-
-
-            builder.setPositiveButton(
-                    "Yes",
-                    new DialogInterface.OnClickListener()
-                    {
-                        public void onClick(DialogInterface dialog, int id)
-                        {
-                            OutputTestResults();
-                            startActivity(chosenIntent);
-                            dialog.cancel();
-                        }
-                    });
-
-            builder.setNegativeButton(
-                    "No",
-                    new DialogInterface.OnClickListener()
-                    {
-                        public void onClick(DialogInterface dialog, int id)
-                        {
-                            startActivity(chosenIntent);
-                            dialog.cancel();
-                        }
-                    });
-
-            AlertDialog saveResultsDialog = builder.create();
-            saveResultsDialog.show();*/
-=======
-            new SaveResultsDialog().show(getFragmentManager(), "");
->>>>>>> SaveDialogUpdate
         }
     }
 

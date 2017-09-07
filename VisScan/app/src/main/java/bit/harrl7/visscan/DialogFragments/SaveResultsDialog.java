@@ -1,13 +1,11 @@
 package bit.harrl7.visscan.DialogFragments;
 
-<<<<<<< HEAD
+
 import android.util.DisplayMetrics;
 import android.view.Display;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-=======
->>>>>>> SaveDialogUpdate
 import bit.harrl7.visscan.Activities.MainActivity;
 
 /**
@@ -26,15 +24,9 @@ public class SaveResultsDialog extends ConfirmationDialog
     {
         super.onStart();
 
-<<<<<<< HEAD
-        tvMessage.setText("Would You Like To Save Your Results?");
-=======
         activity = (MainActivity) getActivity();
 
         tvMessage.setText("Are you sure you want to save and end the test?");
-    }
->>>>>>> SaveDialogUpdate
-
     }
 
     @Override
