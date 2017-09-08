@@ -15,7 +15,11 @@ import bit.harrl7.visscan.Activities.MainActivity;
 
 public class SaveResultsOnCloseDialog extends ConfirmationDialog
 {
+    public enum ENextActivity { HOME, TOOL_LIST }
+
     MainActivity activity;
+    public ENextActivity nextActivity;
+
 
     @Override
     public void onStart()
@@ -28,20 +32,29 @@ public class SaveResultsOnCloseDialog extends ConfirmationDialog
     }
 
 
-    @Override
+
     // === Positive action ===
+    // Save and go to next Activity
+    @Override
     public void PositiveAction()
     {
         activity.OutputTestResults();
-        activity.ReturnToHomeActivity();
+
+        if(nextActivity.equals(ENextActivity.HOME)) activity.ReturnToHomeActivity();
+        if(nextActivity.equals(ENextActivity.TOOL_LIST)) activity.ReturnToToolListActivity();
+
         dismiss();
     }
 
-    @Override
+
     // === Negative action ===
+    // Don't save and go to next Activity
+    @Override
     public void NegativeAction()
     {
-        activity.ReturnToHomeActivity();
+        if(nextActivity.equals(ENextActivity.HOME)) activity.ReturnToHomeActivity();
+        if(nextActivity.equals(ENextActivity.TOOL_LIST)) activity.ReturnToToolListActivity();
+
         dismiss();
     }
 }
