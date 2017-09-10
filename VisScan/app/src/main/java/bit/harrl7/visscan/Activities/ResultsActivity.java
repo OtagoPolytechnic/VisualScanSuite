@@ -33,6 +33,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import bit.harrl7.visscan.DialogFragments.DeleteItemsDialog;
 import bit.harrl7.visscan.DialogFragments.NoItemsSelectedDialog;
 import bit.harrl7.visscan.Patient;
 import bit.harrl7.visscan.Graphing.PlottableObject;
@@ -341,41 +342,11 @@ public class ResultsActivity extends AppCompatActivity {
         @Override
         public void onClick(View v)
         {
-            createAndShowAlertDialog();
+
+            DeleteItemsDialog deleteDialog = new DeleteItemsDialog();
+            deleteDialog.setCancelable(false);
+            deleteDialog.show(getFragmentManager(), "");
         }
-    }
-
-
-    //this method creates a simple dialog, confirming if the user wants to delete the files or not.
-    private void createAndShowAlertDialog()
-    {
-        //create the builder
-        AlertDialog.Builder builder = new AlertDialog.Builder(ResultsActivity.this);
-
-        //set the message
-        builder.setMessage("Are you sure you want to delete these files?");
-
-        //set the positive button
-        builder.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener()
-        {
-            public void onClick(DialogInterface dialog, int id)
-            {
-                RemoveFiles();
-                SetNewAdapter();
-                dialog.dismiss();
-            }
-        });
-        builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener()
-        {
-            public void onClick(DialogInterface dialog, int id)
-            {
-                //do nothing
-                dialog.dismiss();
-            }
-        });
-
-        AlertDialog dialog = builder.create();
-        dialog.show();
     }
 
     public void RemoveFiles()
