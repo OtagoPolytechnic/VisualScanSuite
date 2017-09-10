@@ -14,10 +14,13 @@
         android:largeHeap="true"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity
             android:name=".Activities.MainActivity"
             android:screenOrientation="landscape" />
-        <activity android:name=".Activities.HomeActivity"
+
+        <activity
+            android:name=".Activities.HomeActivity"
             android:screenOrientation="landscape" >
 
             <intent-filter>
@@ -26,15 +29,22 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".Activities.ToolListActivity"
             android:screenOrientation="landscape" />
-        <activity android:name=".Activities.ResultsActivity"
-                  android:screenOrientation="landscape"/>
-        <activity android:name=".Activities.GraphActivity"
-                  android:screenOrientation="landscape"/>
-        <activity android:name=".Graphing.GraphShow"
-                  android:screenOrientation="landscape"/>
+
+        <activity
+            android:name=".Activities.ResultsActivity"
+            android:screenOrientation="landscape"/>
+
+        <activity
+            android:name=".Activities.GraphActivity"
+            android:screenOrientation="landscape"/>
+
+        <activity
+            android:name=".Graphing.GraphShow"
+            android:screenOrientation="landscape"/>
 
     </application>
 
