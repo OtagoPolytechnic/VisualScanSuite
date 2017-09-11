@@ -26,6 +26,7 @@ import java.util.Date;
 
 
 import bit.harrl7.visscan.DialogFragments.SaveResultsDialog;
+import bit.harrl7.visscan.DialogFragments.SaveResultsOnCloseDialog;
 import bit.harrl7.visscan.Enums.ETestType;
 import bit.harrl7.visscan.IVisualTest;
 import bit.harrl7.visscan.Patient;
@@ -196,46 +197,7 @@ public class MainActivity extends AppCompatActivity
             if(testFrag == null) { Toast.makeText(MainActivity.this, "No results to save", Toast.LENGTH_LONG).show(); }
             else
             {
-
-                ShowSaveDialog();
-                /*AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-                builder.setMessage("Are You Sure You Would Like To Save Your Results?.");
-                builder.setCancelable(true);
-
-
-                builder.setPositiveButton(
-                        "Yes",
-                        new DialogInterface.OnClickListener()
-                        {
-                            public void onClick(DialogInterface dialog, int id)
-                            {
-                                OutputTestResults();
-                                saveResults = true;
-                                Intent backToVisionTools = new Intent(MainActivity.this, ToolListActivity.class);
-                                startActivity(backToVisionTools);
-                                dialog.cancel();
-                            }
-                        });
-
-                builder.setNegativeButton(
-                        "No",
-                        new DialogInterface.OnClickListener()
-                        {
-                            public void onClick(DialogInterface dialog, int id)
-                            {
-
-                                dialog.cancel();
-                            }
-                        });
-
-                AlertDialog saveResultsDialog = builder.create();
-                saveResultsDialog.show();
-
-
-                //OutputTestResults();
-
-                */
-
+                new SaveResultsDialog().show(getFragmentManager(), "");
             }
         }
     }
@@ -247,7 +209,7 @@ public class MainActivity extends AppCompatActivity
         public void onClick(View view)
         {
             chosenIntent = new Intent(MainActivity.this, ToolListActivity.class );
-            ShowSaveDialog();
+            ShowSaveOnCloseDialog(SaveResultsOnCloseDialog.ENextActivity.TOOL_LIST);
 
         }
     }
@@ -260,18 +222,19 @@ public class MainActivity extends AppCompatActivity
         {
             chosenIntent = new Intent(MainActivity.this, HomeActivity.class );
 
-            ShowSaveDialog();
+            ShowSaveOnCloseDialog(SaveResultsOnCloseDialog.ENextActivity.HOME);
 
         }
     }
 
-    // === Return to home
-    public void ReturnToHomeActivity()
-    {
-        startActivity(new Intent(MainActivity.this, HomeActivity.class ));
-    }
+    // === Return to Home Activity ===
+    public void ReturnToHomeActivity() { startActivity(new Intent(MainActivity.this, HomeActivity.class )); }
 
-    public void ShowSaveDialog()
+    // === Return to Tool List Activity ===
+    public void ReturnToToolListActivity() { startActivity(new Intent(MainActivity.this, ToolListActivity.class )); }
+
+
+    public void ShowSaveOnCloseDialog(SaveResultsOnCloseDialog.ENextActivity nextActivity)
     {
         if(saveResults)
         {
@@ -279,11 +242,10 @@ public class MainActivity extends AppCompatActivity
         }
         else
         {
-
-            SaveResultsDialog saveDialog = new SaveResultsDialog();
+            SaveResultsOnCloseDialog saveDialog = new SaveResultsOnCloseDialog();
             saveDialog.setCancelable(false);
             saveDialog.show(getFragmentManager(), "");
-
+            saveDialog.nextActivity = nextActivity;
         }
     }
 
