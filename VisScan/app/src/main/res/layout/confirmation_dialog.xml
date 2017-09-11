@@ -48,7 +48,8 @@
                 android:textSize="40sp"
                 android:background="@drawable/btn_style"
                 android:layout_margin="10dp"
-                android:textColor="@color/colorLight" />
+                android:textColor="@color/colorLight"
+                android:fontFamily="sans-serif" />
 
             <Button
                 android:text="Yes"
@@ -59,7 +60,8 @@
                 android:textSize="40sp"
                 android:background="@drawable/btn_style"
                 android:layout_margin="10dp"
-                android:textColor="@color/colorLight" />
+                android:textColor="@color/colorLight"
+                android:fontFamily="sans-serif" />
         </LinearLayout>
     </LinearLayout>
 
