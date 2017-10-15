@@ -63,7 +63,7 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:srcCompat="@drawable/direction"
+                    app:srcCompat="@drawable/tumblinge"
                     android:id="@+id/ivDirStim"
                     android:layout_centerInParent="true" />
             </RelativeLayout>

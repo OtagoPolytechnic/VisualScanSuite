@@ -12,7 +12,7 @@
     tools:context="bit.harrl7.visscan.Graphing.GraphShow">
 
     <ImageView
-        android:layout_width="1000dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/square"
         android:id="@+id/imgGraph"

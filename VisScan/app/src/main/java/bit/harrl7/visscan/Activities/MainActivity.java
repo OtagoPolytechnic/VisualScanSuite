@@ -196,46 +196,7 @@ public class MainActivity extends AppCompatActivity
             if(testFrag == null) { Toast.makeText(MainActivity.this, "No results to save", Toast.LENGTH_LONG).show(); }
             else
             {
-
                 ShowSaveDialog();
-                /*AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-                builder.setMessage("Are You Sure You Would Like To Save Your Results?.");
-                builder.setCancelable(true);
-
-
-                builder.setPositiveButton(
-                        "Yes",
-                        new DialogInterface.OnClickListener()
-                        {
-                            public void onClick(DialogInterface dialog, int id)
-                            {
-                                OutputTestResults();
-                                saveResults = true;
-                                Intent backToVisionTools = new Intent(MainActivity.this, ToolListActivity.class);
-                                startActivity(backToVisionTools);
-                                dialog.cancel();
-                            }
-                        });
-
-                builder.setNegativeButton(
-                        "No",
-                        new DialogInterface.OnClickListener()
-                        {
-                            public void onClick(DialogInterface dialog, int id)
-                            {
-
-                                dialog.cancel();
-                            }
-                        });
-
-                AlertDialog saveResultsDialog = builder.create();
-                saveResultsDialog.show();
-
-
-                //OutputTestResults();
-
-                */
-
             }
         }
     }
@@ -246,6 +207,7 @@ public class MainActivity extends AppCompatActivity
         @Override
         public void onClick(View view)
         {
+            //Go to the tool list activity, show the save dialog before going there incase they need to save
             chosenIntent = new Intent(MainActivity.this, ToolListActivity.class );
             ShowSaveDialog();
 
@@ -258,10 +220,9 @@ public class MainActivity extends AppCompatActivity
         @Override
         public void onClick(View view)
         {
+            //Go to the home activity, show the save dialog before going there incase they need to save
             chosenIntent = new Intent(MainActivity.this, HomeActivity.class );
-
             ShowSaveDialog();
-
         }
     }
 
@@ -376,7 +337,7 @@ public class MainActivity extends AppCompatActivity
         }
 
         // Date
-        SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yy_HH:mm:ss");
+        SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yy_HH-mm-ss");
         String fileName = df.format(new Date());
 
         // Filename
