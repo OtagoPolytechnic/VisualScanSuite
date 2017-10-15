@@ -155,8 +155,8 @@ public class GraphActivity extends AppCompatActivity {
 
             GoToNextActivity();
 
-            if (Build.VERSION.SDK_INT != Build.VERSION_CODES.M)
-                canvas.restore();
+            //if (Build.VERSION.SDK_INT != Build.VERSION_CODES.M)
+               // canvas.restore();
         }
 
         public void GoToNextActivity()

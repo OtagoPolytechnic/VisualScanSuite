@@ -152,10 +152,10 @@ public class LocationFrag extends Fragment implements IVisualTest {
                 }
             }
 
-            if(vibe.hasVibrator())
-            {
-                vibe.vibrate(200);
-            }
+           // if(vibe.hasVibrator())
+            //{
+               // vibe.vibrate(200);
+           // }
 
 
         }

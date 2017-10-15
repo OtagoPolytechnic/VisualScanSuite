@@ -197,7 +197,9 @@ public class MainActivity extends AppCompatActivity
             if(testFrag == null) { Toast.makeText(MainActivity.this, "No results to save", Toast.LENGTH_LONG).show(); }
             else
             {
+
                 new SaveResultsDialog().show(getFragmentManager(), "");
+
             }
         }
     }
@@ -208,6 +210,7 @@ public class MainActivity extends AppCompatActivity
         @Override
         public void onClick(View view)
         {
+            //Go to the tool list activity, show the save dialog before going there incase they need to save
             chosenIntent = new Intent(MainActivity.this, ToolListActivity.class );
             ShowSaveOnCloseDialog(SaveResultsOnCloseDialog.ENextActivity.TOOL_LIST);
 
@@ -220,8 +223,8 @@ public class MainActivity extends AppCompatActivity
         @Override
         public void onClick(View view)
         {
+            //Go to the home activity, show the save dialog before going there incase they need to save
             chosenIntent = new Intent(MainActivity.this, HomeActivity.class );
-
             ShowSaveOnCloseDialog(SaveResultsOnCloseDialog.ENextActivity.HOME);
 
         }
@@ -338,7 +341,7 @@ public class MainActivity extends AppCompatActivity
         }
 
         // Date
-        SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yy_HH:mm:ss");
+        SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yy_HH-mm-ss");
         String fileName = df.format(new Date());
 
         // Filename

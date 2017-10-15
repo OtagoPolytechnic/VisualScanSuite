@@ -79,15 +79,23 @@ public class ResultsActivity extends AppCompatActivity {
         //get all files in the directory
         File[] files = directory.listFiles();
 
-        //loop over files adding to array list of Results
-        for (int i = 0; i < files.length; i++)
+        if(files != null)
         {
-            if(files[i].getName().startsWith(Patient.userID))
+            //loop over files adding to array list of Results
+            for (int i = 0; i < files.length; i++)
             {
-                resultFiles.add(new ResultsList(files[i].getName(), false));
-            }
+                if(files[i].getName().startsWith(Patient.userID))
+                {
+                    resultFiles.add(new ResultsList(files[i].getName(), false));
+                }
 
+            }
         }
+        else
+        {
+            Toast.makeText(this, "No results yet!", Toast.LENGTH_LONG).show();
+        }
+
 
         Collections.sort(resultFiles);
 
@@ -221,7 +229,7 @@ public class ResultsActivity extends AppCompatActivity {
             dialog = new ProgressDialog(activity);
             if(!this.dialog.isShowing())
             {
-                this.dialog.show(); //showt the dialog
+//                this.dialog.show(); //showt the dialog
             }
             else
             {
@@ -419,6 +427,7 @@ public class ResultsActivity extends AppCompatActivity {
 
         public String GetDateFromFileName(String fileName)
         {
+
             int firstDash = fileName.indexOf('_');
             String outputName = fileName.substring(firstDash + 1);
             int afterName = outputName.indexOf('_');
@@ -426,8 +435,8 @@ public class ResultsActivity extends AppCompatActivity {
             String outputName2 = dateName.replace('-', ' ');
             String noCSV = outputName2.replace(".csv", "");
             String noUnderscore = noCSV.replace('_',' ');
-            int noseconds = noUnderscore.lastIndexOf(':');
-            String properOutput = String.valueOf(noUnderscore.subSequence(0, noseconds));
+
+            String properOutput = String.valueOf(noUnderscore);
 
             return properOutput;
         }

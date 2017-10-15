@@ -8,8 +8,8 @@
     android:background="#fafafa"
     android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="0dp"
-    android:paddingRight="0dp"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
     android:paddingTop="0dp"
     tools:context="bit.harrl7.visscan.Activities.HomeActivity"
     android:weightSum="1">
@@ -60,7 +60,7 @@
 
     <Button
         android:text="Select Tool"
-        android:layout_width="1151dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="30dp"
         android:textSize="46sp"
@@ -73,12 +73,11 @@
         android:layout_above="@+id/btnViewResults"
         android:layout_alignParentStart="true"
         android:layout_marginBottom="49dp"
-        android:layout_alignParentEnd="true"
-        android:layout_marginLeft="64dp" />
+        android:layout_alignParentEnd="true" />
 
     <Button
         android:text="View Results"
-        android:layout_width="1154dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="30dp"
         android:textSize="46sp"
@@ -89,14 +88,13 @@
         android:layout_marginBottom="50dp"
         android:layout_above="@+id/btnSwitchUser"
         android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginLeft="64dp" />
+        android:layout_alignParentEnd="true" />
 
     <!-- Button to go to list of tools -->
 
     <Button
         android:text="Change User"
-        android:layout_width="1158dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="30dp"
         android:textSize="46sp"
@@ -106,7 +104,6 @@
         android:id="@+id/btnSwitchUser"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginLeft="64dp" />
+        android:layout_alignParentEnd="true" />
 
 </LinearLayout>
