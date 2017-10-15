@@ -55,7 +55,8 @@ public class ConfirmationDialog extends DialogFragment
         builder.setCancelable(false);
 
         Dialog d =  builder.create();
-        d.setCanceledOnTouchOutside(false);
+        d.setCancelable(false);
+
 
         return d;
     }
@@ -95,6 +96,11 @@ public class ConfirmationDialog extends DialogFragment
             NegativeAction();
         }
     }
+
+    // === Set text ===
+    public void setMessage(String message)      { tvMessage.setText(message); }
+    public void setBtnPosText(String message)   { btnPos.setText(message); }
+    public void setBtnNegText(String message)   { btnNeg.setText(message); }
 
 
     // === Positive action ===

@@ -26,6 +26,7 @@ import java.util.Date;
 
 
 import bit.harrl7.visscan.DialogFragments.SaveResultsDialog;
+import bit.harrl7.visscan.DialogFragments.SaveResultsOnCloseDialog;
 import bit.harrl7.visscan.Enums.ETestType;
 import bit.harrl7.visscan.IVisualTest;
 import bit.harrl7.visscan.Patient;
@@ -196,7 +197,9 @@ public class MainActivity extends AppCompatActivity
             if(testFrag == null) { Toast.makeText(MainActivity.this, "No results to save", Toast.LENGTH_LONG).show(); }
             else
             {
-                ShowSaveDialog();
+
+                new SaveResultsDialog().show(getFragmentManager(), "");
+
             }
         }
     }
@@ -209,7 +212,7 @@ public class MainActivity extends AppCompatActivity
         {
             //Go to the tool list activity, show the save dialog before going there incase they need to save
             chosenIntent = new Intent(MainActivity.this, ToolListActivity.class );
-            ShowSaveDialog();
+            ShowSaveOnCloseDialog(SaveResultsOnCloseDialog.ENextActivity.TOOL_LIST);
 
         }
     }
@@ -222,17 +225,19 @@ public class MainActivity extends AppCompatActivity
         {
             //Go to the home activity, show the save dialog before going there incase they need to save
             chosenIntent = new Intent(MainActivity.this, HomeActivity.class );
-            ShowSaveDialog();
+            ShowSaveOnCloseDialog(SaveResultsOnCloseDialog.ENextActivity.HOME);
+
         }
     }
 
-    // === Return to home
-    public void ReturnToHomeActivity()
-    {
-        startActivity(new Intent(MainActivity.this, HomeActivity.class ));
-    }
+    // === Return to Home Activity ===
+    public void ReturnToHomeActivity() { startActivity(new Intent(MainActivity.this, HomeActivity.class )); }
 
-    public void ShowSaveDialog()
+    // === Return to Tool List Activity ===
+    public void ReturnToToolListActivity() { startActivity(new Intent(MainActivity.this, ToolListActivity.class )); }
+
+
+    public void ShowSaveOnCloseDialog(SaveResultsOnCloseDialog.ENextActivity nextActivity)
     {
         if(saveResults)
         {
@@ -240,11 +245,10 @@ public class MainActivity extends AppCompatActivity
         }
         else
         {
-
-            SaveResultsDialog saveDialog = new SaveResultsDialog();
+            SaveResultsOnCloseDialog saveDialog = new SaveResultsOnCloseDialog();
             saveDialog.setCancelable(false);
             saveDialog.show(getFragmentManager(), "");
-
+            saveDialog.nextActivity = nextActivity;
         }
     }
 
