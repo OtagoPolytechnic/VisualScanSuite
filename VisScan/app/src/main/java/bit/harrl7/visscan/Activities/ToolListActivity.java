@@ -29,7 +29,7 @@ public class ToolListActivity extends AppCompatActivity {
 
         //get ref to listview
         lvTools = (ListView)findViewById(R.id.lvTools);
-        backToHomeButton = (ImageButton)findViewById(R.id.imgBtnBackToHome);
+        backToHomeButton = (ImageButton)findViewById(R.id.imgbtnBackHome);
 
         backToHomeButton.setOnClickListener(new BackToHomeButtonClickHandler());
 

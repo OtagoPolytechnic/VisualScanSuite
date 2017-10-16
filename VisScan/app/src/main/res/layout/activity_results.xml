@@ -19,15 +19,16 @@
     android:weightSum="1">
 
     <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        app:srcCompat="?attr/actionModeCloseDrawable"
+        app:srcCompat="@drawable/back"
         android:id="@+id/imgbtnBackHome"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:elevation="1dp"
         android:background="@drawable/btn_style"
-        android:layout_weight="0.06"
-        android:cropToPadding="false"
-        android:hapticFeedbackEnabled="false"
-        android:soundEffectsEnabled="false" />
+        android:scaleType="fitXY"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:padding="16dp" />
 
     <TextView
         android:text="RESULTS LOG"
@@ -63,7 +64,7 @@
             android:layout_weight="1" />
 
         <TextView
-            android:text="DATE"
+            android:text="DATE &amp; TIME"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/tvDateForFile"
@@ -84,63 +85,93 @@
 
     <ListView
         android:layout_width="match_parent"
-        android:layout_height="437dp"
+        android:layout_height="match_parent"
         android:layout_below="@+id/tvResults"
         android:layout_alignParentStart="true"
         android:id="@+id/lvFiles"
-        android:headerDividersEnabled="false" />
+        android:headerDividersEnabled="false"
+        android:layout_weight="1" />
 
-    <RelativeLayout
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="30dp">
+        android:layout_weight="1"
+        android:layout_marginTop="16dp"
+        android:padding="5dp">
 
-        <Button
-            android:text="Delete Results"
-            android:layout_width="300dp"
-            android:textSize="24sp"
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp">
+
+            <Button
+                android:text="View Plot Graph"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/btnGraph"
+                android:background="@drawable/btn_style"
+                android:textColor="@color/white"
+                android:textSize="24sp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentStart="true"
+                android:layout_weight="1"
+                android:layout_marginBottom="16dp" />
+
+            <Button
+                android:text="View Raw Data"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textSize="24sp"
+                android:id="@+id/btnViewDevice"
+                android:background="@drawable/btn_style"
+                android:textColor="@color/white"
+                android:layout_below="@+id/btnSaveToEmail"
+                android:layout_alignStart="@+id/btnSaveToEmail"
+                android:layout_weight="1"
+                android:layout_marginBottom="16dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/btnDeleteResults"
-            android:background="@drawable/btn_style"
-            android:textColor="@color/white"
-            android:layout_alignBaseline="@+id/btnSaveToEmail"
-            android:layout_alignBottom="@+id/btnSaveToEmail"
-            android:layout_alignParentEnd="true" />
+            android:layout_weight="1"
+            android:layout_marginRight="16dp"
+            android:layout_marginLeft="16dp">
 
-        <Button
-            android:text="View Plot Graph"
-            android:layout_width="299dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/btnGraph"
-            android:background="@drawable/btn_style"
-            android:textColor="@color/white"
-            android:textSize="24sp"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentStart="true" />
+            <Button
+                android:text="Send Data to Email"
+                android:layout_width="match_parent"
+                android:textSize="24sp"
+                android:layout_height="match_parent"
+                android:id="@+id/btnSaveToEmail"
+                android:background="@drawable/btn_style"
+                android:textColor="@color/white"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="16dp"
+                android:layout_weight="1" />
 
-        <Button
-            android:text="Send Data to Email"
-            android:layout_width="300dp"
-            android:textSize="24sp"
-            android:layout_height="wrap_content"
-            android:id="@+id/btnSaveToEmail"
-            android:background="@drawable/btn_style"
-            android:textColor="@color/white"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true" />
+            <Button
+                android:text="Delete Results"
+                android:layout_width="match_parent"
+                android:textSize="24sp"
+                android:layout_height="match_parent"
+                android:id="@+id/btnDeleteResults"
+                android:background="@drawable/btn_style"
+                android:textColor="@color/white"
+                android:layout_alignBaseline="@+id/btnSaveToEmail"
+                android:layout_alignBottom="@+id/btnSaveToEmail"
+                android:layout_alignParentEnd="true"
+                android:layout_weight="1"
+                android:layout_marginBottom="16dp" />
 
-        <Button
-            android:text="View Raw Data"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:textSize="24sp"
-            android:id="@+id/btnViewDevice"
-            android:background="@drawable/btn_style"
-            android:textColor="@color/white"
-            android:layout_below="@+id/btnSaveToEmail"
-            android:layout_alignStart="@+id/btnSaveToEmail"
-            android:layout_marginTop="24dp" />
+        </LinearLayout>
 
-    </RelativeLayout>
+    </LinearLayout>
 
 </LinearLayout>

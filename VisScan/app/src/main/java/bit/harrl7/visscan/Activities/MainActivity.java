@@ -341,11 +341,17 @@ public class MainActivity extends AppCompatActivity
         }
 
         // Date
-        SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yy_HH-mm-ss");
-        String fileName = df.format(new Date());
+        SimpleDateFormat df = new SimpleDateFormat("dd-MMM-YYYY");
+        String date = df.format(new Date());
+
+        SimpleDateFormat tf = new SimpleDateFormat("HH-mm-ss");
+        String time = tf.format(new Date());
+
+        String dateTime = "_date" + date + "_time" + time;
 
         // Filename
-        File file = new File(resultsFolder.getAbsoluteFile().toString(), Patient.getUserID() + "_" + testFrag.GetTestType() + "_" + fileName + ".csv");
+        File file = new File(resultsFolder.getAbsoluteFile().toString(), "_user" + Patient.getUserID() + "_tool" + testFrag.GetTestType() + dateTime + ".csv");
+
         try
         {
             file.createNewFile();
