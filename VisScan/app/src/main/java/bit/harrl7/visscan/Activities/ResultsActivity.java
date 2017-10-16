@@ -84,7 +84,7 @@ public class ResultsActivity extends AppCompatActivity {
             //loop over files adding to array list of Results
             for (int i = 0; i < files.length; i++)
             {
-                if(files[i].getName().startsWith(Patient.userID))
+                if(files[i].getName().startsWith("_user" + Patient.userID))
                 {
                     resultFiles.add(new ResultsList(files[i].getName(), false));
                 }
@@ -255,7 +255,7 @@ public class ResultsActivity extends AppCompatActivity {
                         int iteration = 0;
                         while ((line = br.readLine()) != null)
                         {
-                            if(iteration == 0)  //as to not do the title line of the csv
+                            if(iteration == 0)  // as to not do the title line of the csv
                             {
                                 iteration++;
                                 continue;
@@ -416,9 +416,9 @@ public class ResultsActivity extends AppCompatActivity {
 
         public String GetTestTypeFileName(String fileName)
         {
-            int firstDash = fileName.indexOf('_');
+            int firstDash = fileName.indexOf("_tool");
 
-            String outputName = fileName.substring(firstDash + 1);
+            String outputName = fileName.substring(firstDash + 5);
             int secondUnderscore = outputName.indexOf('_');
             String properOutputOfTestName = outputName.substring(0, secondUnderscore);
 
@@ -427,18 +427,22 @@ public class ResultsActivity extends AppCompatActivity {
 
         public String GetDateFromFileName(String fileName)
         {
+            //date
+            int startOfDate = fileName.indexOf("_date");
+            int endOfDate = fileName.indexOf("_time");
+            String outputDate = fileName.substring(startOfDate + 5, endOfDate);
+            outputDate = outputDate.replace('-', ' ');
 
-            int firstDash = fileName.indexOf('_');
-            String outputName = fileName.substring(firstDash + 1);
-            int afterName = outputName.indexOf('_');
-            String dateName = outputName.substring(afterName);
-            String outputName2 = dateName.replace('-', ' ');
-            String noCSV = outputName2.replace(".csv", "");
-            String noUnderscore = noCSV.replace('_',' ');
+            //time
+            int startOfTime = fileName.indexOf("_time");
+            int endOfTime = fileName.indexOf(".");
+            String outputTime = fileName.substring(startOfTime + 5, endOfTime);
+            outputTime = outputTime.replace('-', ':');
 
-            String properOutput = String.valueOf(noUnderscore);
+            String dateandtimeoutput = outputDate + "  " +  outputTime;
 
-            return properOutput;
+
+            return dateandtimeoutput;
         }
     }
 

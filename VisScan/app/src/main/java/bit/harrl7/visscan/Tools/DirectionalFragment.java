@@ -31,6 +31,9 @@ public class DirectionalFragment extends Fragment  implements IVisualTest
 {
     ImageView stim;
 
+    // Temp csv storage
+    String resultsHolder;
+
     // Trail logic control
     final int trialsPerRound = 5;
     int trialCount;
@@ -56,6 +59,7 @@ public class DirectionalFragment extends Fragment  implements IVisualTest
         stim = (ImageView) v.findViewById(R.id.ivDirStim);
 
         // Control
+        resultsHolder = "";
         reset();
 
         // Buttons
@@ -94,16 +98,16 @@ public class DirectionalFragment extends Fragment  implements IVisualTest
         switch (btnId)
         {
             case R.id.btnUp:
-                correct = stim.getRotation() == 90*0;
+                correct = stim.getRotation() == 90*3;
                 break;
             case R.id.btnRight:
-                correct = stim.getRotation() == 90*1;
+                correct = stim.getRotation() == 90*0;
                 break;
             case R.id.btnDown:
-                correct = stim.getRotation() == 90*2;
+                correct = stim.getRotation() == 90*1;
                 break;
             case R.id.btnLeft:
-                correct = stim.getRotation() == 90*3;
+                correct = stim.getRotation() == 90*2;
                 break;
         }
 
@@ -139,6 +143,7 @@ public class DirectionalFragment extends Fragment  implements IVisualTest
             MainActivity mainActivity = (MainActivity) getActivity();
             mainActivity.OpenDrawer();
 
+            storeResults();
             reset();
         }
     }
@@ -155,6 +160,20 @@ public class DirectionalFragment extends Fragment  implements IVisualTest
         hitsPerRound = new int[roundsPerTest];
     }
 
+    // Store results csv so the tool can be reset without losing results
+    private void storeResults()
+    {
+        String csv = "Scale, hit, total \r\n";
+
+        for (int i=0; i<roundsPerTest; i++)
+        {
+            csv += scaleArray[i] + ", " + hitsPerRound[i] + ", " + trialsPerRound + "\r\n";
+        }
+
+        reset();
+
+        resultsHolder = csv;
+    }
 
 
 
@@ -174,7 +193,8 @@ public class DirectionalFragment extends Fragment  implements IVisualTest
         }
 
         reset();
-        return csv;
+
+        return resultsHolder;
     }
 
     @Override

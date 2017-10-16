@@ -4,16 +4,13 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="bit.harrl7.visscan.Activities.DisplayToolFrag"
-    android:paddingRight="15dp"
-    android:paddingTop="15dp"
-    android:paddingBottom="15dp">
+    tools:context="bit.harrl7.visscan.Activities.DisplayToolFrag">
 
     <!-- TODO: Update blank fragment layout -->
 
     <TextView
         android:textStyle="normal"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/tvDescriptionTool"
         android:textColor="?attr/colorPrimary"
@@ -22,20 +19,21 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_gravity="center_horizontal"
-        android:typeface="normal" />
+        android:typeface="normal"
+        android:textAlignment="center" />
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="116dp"
+        android:layout_height="match_parent"
         android:layout_weight="2"
         android:isScrollContainer="true"
-        android:scrollIndicators="right"
-        android:layout_marginTop="16dp">
+        android:scrollIndicators="right">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical"
+            android:padding="16dp">
 
             <TextView
                 android:layout_width="match_parent"
@@ -50,7 +48,7 @@
                 android:isScrollContainer="true"
                 android:textColor="@android:color/black"
                 android:textAllCaps="false"
-                android:textAlignment="center"
+                android:textAlignment="textStart"
                 android:lineSpacingExtra="8sp" />
 
             <ImageView
@@ -59,26 +57,26 @@
                 app:srcCompat="@drawable/flashtest"
                 android:id="@+id/imgToolShow"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="30dp" />
-
-            <Button
-                android:text="Start Tool"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="30dp"
-                android:textSize="30sp"
-                android:textStyle="bold"
-                android:id="@+id/btnStartTool"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentStart="true"
-                android:background="@drawable/btn_style"
-                android:textColor="@color/white"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="46dp"
-                android:layout_weight="0.00" />
+                android:layout_marginTop="16dp" />
 
         </LinearLayout>
     </ScrollView>
+
+    <Button
+        android:text="Start Tool"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:textSize="36sp"
+        android:textStyle="bold"
+        android:id="@+id/btnStartTool"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true"
+        android:background="@drawable/btn_style"
+        android:textColor="@color/white"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="0.00"
+        android:layout_margin="16dp" />
 
 </LinearLayout>
