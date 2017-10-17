@@ -15,5 +15,6 @@
     <string name="desc_contrast">Tap each line where you can read the text, starting from the top.</string>
     <string name="desc_peripheral">Tests the patients ability to see objects in their peripherial.\n\nThe patient must focus on the selected corner and tap the screen each time an object appears.</string>
     <string name="desc_directional">Press the correct button that corresponds to the direction of the E image shown in the center.</string>
+    <string name="desc_line_bisection">Tap the lines in the centre.</string>
 
 </resources>

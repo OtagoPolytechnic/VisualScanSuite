@@ -19,7 +19,8 @@ import bit.harrl7.visscan.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class DisplayToolFrag extends Fragment {
+public class DisplayToolFrag extends Fragment
+{
 
     TextView tvNameOfTool;
     TextView tvDescription;
@@ -121,6 +122,11 @@ public class DisplayToolFrag extends Fragment {
                 selectedTool = ETestType.Directional;
                 imgOfTest.setImageResource(R.drawable.directional);
                 tvDescription.setText(R.string.desc_directional);
+                break;
+            case "Line Bisection":
+                selectedTool = ETestType.Line_Bisection;
+                imgOfTest.setImageResource(R.drawable.diagonaltest);
+                tvDescription.setText(R.string.desc_line_bisection);
                 break;
             default:
                 selectedTool = ETestType.Error;

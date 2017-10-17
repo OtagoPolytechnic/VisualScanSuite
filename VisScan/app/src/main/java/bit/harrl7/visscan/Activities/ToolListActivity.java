@@ -19,7 +19,7 @@ public class ToolListActivity extends AppCompatActivity {
 
     ListView lvTools;
     ImageButton backToHomeButton;
-    String[] tools = {"Flash", "Wander", "Walking Diagonal", "Zig Zag", "Shape Cancellation", "Contrast", "Directional"};  //TO BE ENUMS?
+    String[] tools = {"Flash", "Wander", "Walking Diagonal", "Zig Zag", "Shape Cancellation", "Contrast", "Directional", "Line Bisection"};  //TO BE ENUMS?
 
 
     @Override

@@ -1,0 +1,54 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="bit.harrl7.visscan.Tools.LineBisection"
+    android:background="@android:color/black">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/outerContainer0">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/lnContainer0"
+                android:alpha=".5"
+                android:background="@android:color/holo_green_dark">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:id="@+id/ln0"
+                    android:background="@color/white"
+                    android:layout_height="2dp"
+                    android:layout_centerVertical="true">
+                    </View>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/hitContainer0"
+                android:alpha=".5"
+                android:background="@color/colorPrimary">
+
+                <View
+                    android:layout_width="2dp"
+                    android:id="@+id/hit0"
+                    android:background="@color/white"
+                    android:layout_height="match_parent">
+                </View>
+            </RelativeLayout>
+
+        </RelativeLayout>
+    </LinearLayout>
+
+</RelativeLayout>
