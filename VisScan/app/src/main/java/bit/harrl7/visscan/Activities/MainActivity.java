@@ -21,6 +21,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 
 import bit.harrl7.visscan.DialogFragments.SaveResultsDialog;
@@ -339,7 +340,7 @@ public class MainActivity extends AppCompatActivity
         }
 
         // Date
-        SimpleDateFormat df = new SimpleDateFormat("dd-MMM-YYYY");
+        SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy", Locale.ENGLISH);
         String date = df.format(new Date());
 
         SimpleDateFormat tf = new SimpleDateFormat("HH-mm-ss");
