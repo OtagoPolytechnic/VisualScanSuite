@@ -21,7 +21,7 @@ import bit.harrl7.visscan.R;
 
 public class LineBisection extends Fragment implements IVisualTest
 {
-    final int ITEM_COUNT = 3;
+    final int ITEM_COUNT = 5;
 
     RelativeLayout[] outerContainers;
     RelativeLayout[] lineContainers;
@@ -46,17 +46,23 @@ public class LineBisection extends Fragment implements IVisualTest
         hitMarker[0] = v.findViewById(R.id.hit0);
         hitMarker[1] = v.findViewById(R.id.hit1);
         hitMarker[2] = v.findViewById(R.id.hit2);
+        hitMarker[3] = v.findViewById(R.id.hit3);
+        hitMarker[4] = v.findViewById(R.id.hit4);
 
         // Hit container
         hitContainers[0] = (RelativeLayout) v.findViewById(R.id.hitContainer0);
         hitContainers[1] = (RelativeLayout) v.findViewById(R.id.hitContainer1);
         hitContainers[2] = (RelativeLayout) v.findViewById(R.id.hitContainer2);
+        hitContainers[3] = (RelativeLayout) v.findViewById(R.id.hitContainer3);
+        hitContainers[4] = (RelativeLayout) v.findViewById(R.id.hitContainer4);
 
 
         // Line
         lineContainers[0] = (RelativeLayout) v.findViewById(R.id.lnContainer0);
         lineContainers[1] = (RelativeLayout) v.findViewById(R.id.lnContainer1);
         lineContainers[2] = (RelativeLayout) v.findViewById(R.id.lnContainer2);
+        lineContainers[3] = (RelativeLayout) v.findViewById(R.id.lnContainer3);
+        lineContainers[4] = (RelativeLayout) v.findViewById(R.id.lnContainer4);
 
 
         // Outer containers
@@ -69,6 +75,11 @@ public class LineBisection extends Fragment implements IVisualTest
         outerContainers[2] = (RelativeLayout) v.findViewById(R.id.outerContainer2);
         outerContainers[2].setOnTouchListener(new ClickLineHandler());
 
+        outerContainers[3] = (RelativeLayout) v.findViewById(R.id.outerContainer3);
+        outerContainers[3].setOnTouchListener(new ClickLineHandler());
+
+        outerContainers[4] = (RelativeLayout) v.findViewById(R.id.outerContainer4);
+        outerContainers[4].setOnTouchListener(new ClickLineHandler());
         reset();
 
         return v;
@@ -146,12 +157,27 @@ public class LineBisection extends Fragment implements IVisualTest
     @Override
     public String ToCSV()
     {
-        return null;
+        String output = "X1, X2, Width, Xcenter, Xuser, Error\r\n";
+
+        for(int i = 0; i < ITEM_COUNT; i++)
+        {
+            int X1 = lineContainers[i].getPaddingLeft();
+            int X2 = lineContainers[i].getWidth() - lineContainers[i].getPaddingRight();
+            int width = X2 - X1;
+            int Xcenter = (X1 + X2) / 2;
+            int Xuser = hitContainers[i].getLeft();
+            int error = Math.abs(Xuser - Xcenter);
+
+            output += X1 + ", " + X2 + ", " + width + ", " + Xcenter + ", " + Xuser + ", " + error + "\r\n";
+        }
+
+        return output;
     }
 
     @Override
     public String GetTestType()
     {
-        return null;
+        return "Line Bisection";
+
     }
 }
