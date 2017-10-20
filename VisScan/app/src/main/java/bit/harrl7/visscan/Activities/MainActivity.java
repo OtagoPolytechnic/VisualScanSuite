@@ -1,10 +1,8 @@
 package bit.harrl7.visscan.Activities;
 
-import android.app.AlertDialog;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Point;
 import android.os.Environment;
@@ -23,6 +21,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 
 import bit.harrl7.visscan.DialogFragments.SaveResultsDialog;
@@ -33,9 +32,8 @@ import bit.harrl7.visscan.Patient;
 import bit.harrl7.visscan.R;
 import bit.harrl7.visscan.Tools.ContrastFrag;
 import bit.harrl7.visscan.Tools.DirectionalFragment;
-import bit.harrl7.visscan.Tools.DirectionalSizeFrag;
-import bit.harrl7.visscan.Tools.FlashSizeFrag;
 import bit.harrl7.visscan.Tools.FlashStimFrag;
+import bit.harrl7.visscan.Tools.LineBisection;
 import bit.harrl7.visscan.Tools.LocationFrag;
 import bit.harrl7.visscan.Tools.PeripherialFlashFrag;
 import bit.harrl7.visscan.Tools.WalkDiagonalFrag;
@@ -125,10 +123,6 @@ public class MainActivity extends AppCompatActivity
                 tvName.setText("Flash Test");
                 dynamicFragment = new FlashStimFrag();
                 break;
-            case FlashSize:
-                tvName.setText("Flash Size Test");
-                dynamicFragment= new FlashSizeFrag();
-                break;
                 
             case Wander:
                 tvName.setText("Wander Test");
@@ -163,6 +157,11 @@ public class MainActivity extends AppCompatActivity
             case Directional:
                 tvName.setText("Directional Test");
                 dynamicFragment = new DirectionalFragment();
+                break;
+
+            case Line_Bisection:
+                tvName.setText("Line Bisection");
+                dynamicFragment = new LineBisection();
                 break;
         }
 
@@ -341,7 +340,7 @@ public class MainActivity extends AppCompatActivity
         }
 
         // Date
-        SimpleDateFormat df = new SimpleDateFormat("dd-MMM-YYYY");
+        SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy", Locale.ENGLISH);
         String date = df.format(new Date());
 
         SimpleDateFormat tf = new SimpleDateFormat("HH-mm-ss");

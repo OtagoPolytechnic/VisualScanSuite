@@ -23,6 +23,7 @@ import java.io.FileOutputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Locale;
 
 import bit.harrl7.visscan.Graphing.GraphShow;
 import bit.harrl7.visscan.Patient;
@@ -82,7 +83,7 @@ public class GraphActivity extends AppCompatActivity {
             paint = new Paint();
             String docsFolder = Environment.getExternalStorageDirectory().toString();
             resultsFolder = new File(docsFolder +"/Graphs");
-            df = new SimpleDateFormat("dd-MMM-yy_HH:mm:ss");
+            df = new SimpleDateFormat("dd-MMM-yy_HH:mm:ss", Locale.ENGLISH);
             date = new Date();
             String fileTimeStamp = df.format(date);
             wholeFileName = Patient.getUserID() + "_" + Patient.getDOB() + "-" +  fileTimeStamp + ".jpg";

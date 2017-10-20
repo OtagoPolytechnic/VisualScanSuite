@@ -15,5 +15,6 @@ public enum ETestType
     Contrast,
     Walking_Diagonal,
     Directional,
+    Line_Bisection,
     Error
 }
