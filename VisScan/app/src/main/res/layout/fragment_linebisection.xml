@@ -11,17 +11,18 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <!-- Line 0-->
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/outerContainer0">
+            android:id="@+id/outerContainer0"
+            android:layout_weight="1">
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:id="@+id/lnContainer0"
-                android:alpha=".5"
-                android:background="@android:color/holo_green_dark">
+                android:alpha=".5">
 
                 <View
                     android:layout_width="match_parent"
@@ -37,18 +38,106 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:id="@+id/hitContainer0"
-                android:alpha=".5"
-                android:background="@color/colorPrimary">
+                android:alpha=".5">
 
                 <View
                     android:layout_width="2dp"
                     android:id="@+id/hit0"
                     android:background="@color/white"
-                    android:layout_height="match_parent">
+                    android:layout_centerVertical="true"
+                    android:layout_height="100dp"
+                    android:visibility="invisible">
                 </View>
             </RelativeLayout>
 
         </RelativeLayout>
+
+
+        <!-- Line 1-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/outerContainer1"
+            android:layout_weight="1">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/lnContainer1"
+                android:alpha=".5">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:id="@+id/ln1"
+                    android:background="@color/white"
+                    android:layout_height="2dp"
+                    android:layout_centerVertical="true">
+                </View>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/hitContainer1"
+                android:alpha=".5">
+
+                <View
+                    android:layout_width="2dp"
+                    android:id="@+id/hit1"
+                    android:background="@color/white"
+                    android:layout_height="100dp"
+                    android:layout_centerVertical="true"
+                    android:visibility="invisible">
+                </View>
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+
+        <!-- Line 2 -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/outerContainer2"
+            android:layout_weight="1">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/lnContainer2"
+                android:alpha=".5">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:id="@+id/ln2"
+                    android:background="@color/white"
+                    android:layout_height="2dp"
+                    android:layout_centerVertical="true">
+                </View>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/hitContainer2"
+                android:alpha=".5"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentStart="true">
+
+                <View
+                    android:layout_width="2dp"
+                    android:id="@+id/hit2"
+                    android:background="@color/white"
+                    android:layout_height="100dp"
+                    android:layout_centerVertical="true"
+                    android:visibility="invisible">
+                </View>
+            </RelativeLayout>
+
+        </RelativeLayout>
+
     </LinearLayout>
 
 </RelativeLayout>

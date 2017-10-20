@@ -21,12 +21,13 @@ import bit.harrl7.visscan.R;
 
 public class LineBisection extends Fragment implements IVisualTest
 {
+    final int ITEM_COUNT = 3;
+
     RelativeLayout[] outerContainers;
     RelativeLayout[] lineContainers;
     RelativeLayout[] hitContainers;
 
-
-    View line;
+    View[] hitMarker;
 
     public LineBisection() {}
 
@@ -36,20 +37,37 @@ public class LineBisection extends Fragment implements IVisualTest
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_linebisection, container, false);
 
-        outerContainers = new RelativeLayout[1];
-        hitContainers = new RelativeLayout[1];
-        lineContainers = new RelativeLayout[1];
+        outerContainers = new RelativeLayout[ITEM_COUNT];
+        hitContainers = new RelativeLayout[ITEM_COUNT];
+        hitMarker = new View[ITEM_COUNT];
+        lineContainers = new RelativeLayout[ITEM_COUNT];
 
+        // Hit marker
+        hitMarker[0] = v.findViewById(R.id.hit0);
+        hitMarker[1] = v.findViewById(R.id.hit1);
+        hitMarker[2] = v.findViewById(R.id.hit2);
 
+        // Hit container
         hitContainers[0] = (RelativeLayout) v.findViewById(R.id.hitContainer0);
+        hitContainers[1] = (RelativeLayout) v.findViewById(R.id.hitContainer1);
+        hitContainers[2] = (RelativeLayout) v.findViewById(R.id.hitContainer2);
 
+
+        // Line
         lineContainers[0] = (RelativeLayout) v.findViewById(R.id.lnContainer0);
+        lineContainers[1] = (RelativeLayout) v.findViewById(R.id.lnContainer1);
+        lineContainers[2] = (RelativeLayout) v.findViewById(R.id.lnContainer2);
 
 
+        // Outer containers
         outerContainers[0] = (RelativeLayout) v.findViewById(R.id.outerContainer0);
         outerContainers[0].setOnTouchListener(new ClickLineHandler());
 
-        line = v.findViewById(R.id.hit0);
+        outerContainers[1] = (RelativeLayout) v.findViewById(R.id.outerContainer1);
+        outerContainers[1].setOnTouchListener(new ClickLineHandler());
+
+        outerContainers[2] = (RelativeLayout) v.findViewById(R.id.outerContainer2);
+        outerContainers[2].setOnTouchListener(new ClickLineHandler());
 
         reset();
 
@@ -66,11 +84,18 @@ public class LineBisection extends Fragment implements IVisualTest
         {
             if(event.getActionMasked() == MotionEvent.ACTION_DOWN)
             {
-                reset();
-                hitContainers[0].setLeft((int) event.getX());
+
+                // Find the Outer Container that was clicked
+                for(int i = 0; i < ITEM_COUNT; i++)
+                {
+                    if(v.equals(outerContainers[i]))
+                    {
+                        hitContainers[i].setLeft((int) event.getX());
+                        hitMarker[i].setVisibility(View.VISIBLE);
+                    }
+                }
+
             }
-
-
 
             return true;
         }
@@ -91,21 +116,24 @@ public class LineBisection extends Fragment implements IVisualTest
         double leftPad =  1;
         double rightPad = 1;
 
-        do
+        for(int i = 0; i < ITEM_COUNT; i++)
         {
-            // Random padding, must leave room for minimum line length
-            leftPad =  Math.random();
-            rightPad =  Math.random();
+            do {
+                // Random padding, must leave room for minimum line length
+                leftPad = Math.random();
+                rightPad = Math.random();
 
-        } while (leftPad + rightPad > 1-minLen);
+            } while (leftPad + rightPad > 1 - minLen);
 
 
-        // Absolute values for padding
-        int leftPadAbsol = (int) (leftPad * width);
-        int rightPadAbsol = (int) (rightPad * width);
+            // Absolute values for padding
+            int leftPadAbsol = (int) (leftPad * width);
+            int rightPadAbsol = (int) (rightPad * width);
 
-        // Set padding on View
-        lineContainers[0].setPadding(leftPadAbsol, 0, rightPadAbsol, 0);
+            // Set padding on View
+
+            lineContainers[i].setPadding(leftPadAbsol, 0, rightPadAbsol, 0);
+        }
 
     }
 
