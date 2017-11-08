@@ -75,7 +75,7 @@ public class ConfirmationDialog extends DialogFragment
         float dpWidth  = outMetrics.widthPixels / density;
 
 
-        getDialog().getWindow().setLayout((int) (dpWidth*1.5), ViewGroup.LayoutParams.WRAP_CONTENT );
+        getDialog().getWindow().setLayout((int) (dpWidth), ViewGroup.LayoutParams.WRAP_CONTENT );
     }
 
 

@@ -39,7 +39,7 @@ public class DirectionalFragment extends Fragment  implements IVisualTest
     int trialCount;
 
     // Image scale for each round
-    final float[] scaleArray = { 1.5f, 1.0f, 0.8f, 0.5f, 0.2f };
+    final float[] scaleArray = { 1.2f, 1.0f, 0.8f, 0.5f, 0.2f };
 
     int[] hitsPerRound;
     int round;

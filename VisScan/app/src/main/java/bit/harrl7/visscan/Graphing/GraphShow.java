@@ -71,6 +71,11 @@ public class GraphShow extends AppCompatActivity {
         btnBack.setOnClickListener(new ButtonBackHandler());
         btnEmail.setOnClickListener(new ButtonEmailHandler());
 
+        tvLowerLeft.setVisibility(View.INVISIBLE);
+        tvLowerRight.setVisibility(View.INVISIBLE);
+        tvUpperLeft.setVisibility(View.INVISIBLE);
+        tvUpperRight.setVisibility(View.INVISIBLE);
+
     }
 
     public class ButtonBackHandler implements View.OnClickListener
