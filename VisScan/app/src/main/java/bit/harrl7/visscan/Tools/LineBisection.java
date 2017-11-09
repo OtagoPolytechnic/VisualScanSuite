@@ -93,7 +93,7 @@ public class LineBisection extends Fragment implements IVisualTest
         @Override
         public boolean onTouch(View v, MotionEvent event)
         {
-            if(event.getActionMasked() == MotionEvent.ACTION_DOWN)
+            //if(event.getActionMasked() == MotionEvent.ACTION_DOWN)
             {
 
                 // Find the Outer Container that was clicked
@@ -101,8 +101,13 @@ public class LineBisection extends Fragment implements IVisualTest
                 {
                     if(v.equals(outerContainers[i]))
                     {
-                        hitContainers[i].setLeft((int) event.getX());
-                        hitMarker[i].setVisibility(View.VISIBLE);
+                        if(event.getX() > 0)
+                        {
+                            // Update the hit marker to the position the user clicks
+                            hitContainers[i].setPadding((int) event.getX(), hitContainers[i].getPaddingRight(), hitContainers[i].getPaddingTop(), hitContainers[i].getPaddingBottom());
+                            hitMarker[i].setVisibility(View.VISIBLE);
+                        }
+
                     }
                 }
 
