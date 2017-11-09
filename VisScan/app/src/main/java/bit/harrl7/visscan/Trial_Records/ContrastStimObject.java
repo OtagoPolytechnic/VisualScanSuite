@@ -10,11 +10,13 @@ public class ContrastStimObject
 {
     public int contrastValue;
     public boolean hit;
+    public Point pos;
 
-    public ContrastStimObject(int contrastValue, boolean hit)
+    public ContrastStimObject(Point pos, boolean hit, int contrastValue)
     {
         this.contrastValue = contrastValue;
         this.hit = hit;
+        this.pos = pos;
     }
 
     public String ToCsv()

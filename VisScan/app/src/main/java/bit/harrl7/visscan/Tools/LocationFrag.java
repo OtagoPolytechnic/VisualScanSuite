@@ -36,9 +36,11 @@ public class LocationFrag extends Fragment implements IVisualTest {
 
     //STATICS
     private static int WIDTH = 90;
-    private static int NUM_IMAGES = 12;
+    private static int NUM_IMAGES = 10;
     private static int HEIGHT =90;
     private static int INSET = 120;
+    public int smileyWidth;
+    public int smileyHeight;
 
     public LocationFrag() {
         // Required empty public constructor
@@ -64,6 +66,8 @@ public class LocationFrag extends Fragment implements IVisualTest {
         // Screen bounds for stim placement
         MainActivity main = (MainActivity) getActivity();
         bounds = main.GetBounds();
+        smileyWidth = bounds.x / NUM_IMAGES;
+        smileyHeight = bounds.y / NUM_IMAGES;
 
         smileys = new ArrayList<ImageView>();
 
@@ -78,16 +82,16 @@ public class LocationFrag extends Fragment implements IVisualTest {
     {
         for(int rows = 0; rows < NUM_IMAGES; rows++)
         {
-            for(int cols = 0; cols < 10; cols++)
+            for(int cols = 0; cols < NUM_IMAGES; cols++)
             {
                 ImageView smileyIV = new ImageView(getActivity());
 
-                RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(WIDTH + 20,HEIGHT + 20);
+                RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(smileyWidth,smileyHeight);
 
                 smileyIV.setLayoutParams(layoutParams);
 
                 smileyIV.setX(rows * (bounds.x / NUM_IMAGES));
-                smileyIV.setY(cols * (bounds.y /NUM_IMAGES + 25));
+                smileyIV.setY(cols * (bounds.y /NUM_IMAGES));
 
                 smileys.add(smileyIV);
 
