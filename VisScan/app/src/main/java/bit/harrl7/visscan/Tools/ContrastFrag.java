@@ -174,11 +174,17 @@ public class ContrastFrag extends Fragment implements IVisualTest {
     ArrayList<TextView> contrastWords;
     RelativeLayout layout;
     Vibrator vibe;
+    TextView letterPick;
     public static List<Integer> rgbValues = new ArrayList<Integer>();
+    char characterToTap;
 
     //STATICS
 
+    private static int RGB_MULTIPLIER = 12;
     private static int NUM_IMAGES = 10;
+    private static int TOTAL_RGB = 21;
+    private static float TEXT_SIZE = 34f;
+    private static float SMALLER_TEXT_SIZE = 34f;
     public int letterWidth;
     public int letterHeight;
 
@@ -194,10 +200,11 @@ public class ContrastFrag extends Fragment implements IVisualTest {
         View view = inflater.inflate(R.layout.fragment_location, container, false);
         pos = new Point(0, 0);
 
-        for (int i = 1; i < 21; i++) {
-            rgbValues.add(i * 12);
+        for (int i = 2; i < TOTAL_RGB; i++) {
+            rgbValues.add(i * RGB_MULTIPLIER);
         }
 
+        rGen = new Random();
 
         //list of points where the user has clicked the smiley
         hitPoints = new ArrayList<ContrastStimObject>();
@@ -205,42 +212,56 @@ public class ContrastFrag extends Fragment implements IVisualTest {
         //get the relative layout
         layout = (RelativeLayout) view.findViewById(R.id.layout);
 
-        //crea a random
-        rGen = new Random();
+        letterPick = new TextView(getActivity());
+        letterPick.setTextSize(TEXT_SIZE);
+        characterToTap = (char)(rGen.nextInt(4)+97); //pick a letter between A and D
+        letterPick.setText("Tap every '" + String.valueOf(characterToTap).toUpperCase() + "' that you can see.");
+
+        letterPick.setGravity(Gravity.TOP);
+        letterPick.setGravity(Gravity.CENTER_HORIZONTAL);
+        letterPick.setTextColor(Color.WHITE);
 
         // Screen bounds for stim placement
         MainActivity main = (MainActivity) getActivity();
         bounds = main.GetBounds();
         letterWidth = bounds.x / NUM_IMAGES;
-        letterHeight = bounds.y / NUM_IMAGES;
+        letterHeight =( bounds.y + letterPick.getHeight())  / NUM_IMAGES;
+        letterPick.setWidth(bounds.x);
+
+        layout.addView(letterPick);
 
         contrastWords = new ArrayList<TextView>();
+        //create a random
 
         DrawLetters();
+
+
 
         //return the view
         return view;
 
     }
 
+    //this method draws the letters to the screen
     public void DrawLetters()
     {
 
 
-        for (int rows = 0; rows < NUM_IMAGES; rows++) {
-            for (int cols = 0; cols < NUM_IMAGES; cols++) {
+        for (int rows = 0; rows < NUM_IMAGES ; rows++) {
+            for (int cols = 1; cols < NUM_IMAGES; cols++) {
                 TextView contrastText = new TextView(getActivity());
 
                 RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(letterWidth, letterHeight);
 
+
                 int rgb = rgbValues.get(rGen.nextInt(rgbValues.size()));
-                char data = (char)(rGen.nextInt(25)+97);
+                char data = (char)(rGen.nextInt(4)+97);
                 contrastText.setLayoutParams(layoutParams);
 
-                contrastText.setTextSize(30f);
+                contrastText.setTextSize(SMALLER_TEXT_SIZE);
 
                 contrastText.setX(rows * (bounds.x / NUM_IMAGES));
-                contrastText.setY(cols * (bounds.y / NUM_IMAGES));
+                contrastText.setY(cols * (bounds.y + letterPick.getHeight()) / NUM_IMAGES);
 
                 //set text and colour
                 contrastText.setText(String.valueOf(data).toUpperCase());
@@ -251,20 +272,43 @@ public class ContrastFrag extends Fragment implements IVisualTest {
                 //add the textview to the layout
                 layout.addView(contrastText);
 
-                //set the onclick listener
-                contrastText.setOnClickListener(new ContrastFrag.ShapeClickHandler());
-
-                int xStandardized= ((100*(int)contrastText.getX())/bounds.x);
-                int yStandardized= ((100*(int)contrastText.getY())/bounds.y);
-                ContrastStimObject stim = new ContrastStimObject(new Point(xStandardized, yStandardized), false,rgb);
-                hitPoints.add(stim);
-
+                if(data == characterToTap)
+                {
+                    int xStandardized= ((100*(int)contrastText.getX())/bounds.x);
+                    int yStandardized= ((100*(int)contrastText.getY())/bounds.y + letterPick.getHeight());
+                    ContrastStimObject stim = new ContrastStimObject(new Point(xStandardized, yStandardized), false,rgb);
+                    hitPoints.add(stim);
+                    //set the onclick listener
+                    contrastText.setOnClickListener(new ContrastFrag.ShapeClickHandler());
+                }
+                else
+                {
+                    contrastText.setOnClickListener(new ContrastFrag.WrongShapeClickHandler());
+                }
             }
 
 
         }
     }
 
+
+    //Click handler for the imageviews that are clickable.
+    public class WrongShapeClickHandler implements View.OnClickListener {
+        @Override
+        public void onClick(View v) {
+            //get the imageview that was clicked.
+            TextView textHit = (TextView) v;
+
+            //change the smiley face to a smiley face with a cross through it
+            textHit.setText("\u274C");
+            textHit.setTextColor(Color.WHITE);
+
+            //disable the clicked image
+            textHit.setEnabled(false);
+
+
+        }
+    }
 
     //Click handler for the imageviews that are clickable.
     public class ShapeClickHandler implements View.OnClickListener {
@@ -275,13 +319,13 @@ public class ContrastFrag extends Fragment implements IVisualTest {
 
             //change the smiley face to a smiley face with a cross through it
             textHit.setText("✓");
-            textHit.setTextColor(Color.WHITE);
+            textHit.setTextColor(Color.GREEN);
 
             //disable the clicked image
             textHit.setEnabled(false);
 
             int xStandardized = ((100 * (int) textHit.getX()) / bounds.x);
-            int yStandardized = ((100 * (int) textHit.getY()) / bounds.y);
+            int yStandardized = ((100 * (int) textHit.getY()) / (bounds.y + letterPick.getHeight()));
 
             //add the smiley face that was hit to an arraylist of points
             for (ContrastStimObject stim : hitPoints) {

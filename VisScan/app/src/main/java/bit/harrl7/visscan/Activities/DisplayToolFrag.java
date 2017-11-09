@@ -11,7 +11,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import bit.harrl7.visscan.Activities.MainActivity;
 import bit.harrl7.visscan.Enums.ETestType;
 import bit.harrl7.visscan.R;
 
@@ -111,7 +110,7 @@ public class DisplayToolFrag extends Fragment
                 break;
             case "Contrast":
                 selectedTool = ETestType.Contrast;
-                imgOfTest.setImageResource(R.drawable.contrast);
+                imgOfTest.setImageResource(R.drawable.contrastpic);
                 tvDescription.setText(R.string.desc_contrast);
                 break;
             case "Peripherial":
@@ -120,12 +119,12 @@ public class DisplayToolFrag extends Fragment
                 break;
             case "Directional":
                 selectedTool = ETestType.Directional;
-                imgOfTest.setImageResource(R.drawable.directional);
+                imgOfTest.setImageResource(R.drawable.directionpic);
                 tvDescription.setText(R.string.desc_directional);
                 break;
             case "Line Bisection":
                 selectedTool = ETestType.Line_Bisection;
-                imgOfTest.setImageResource(R.drawable.diagonaltest);
+                imgOfTest.setImageResource(R.drawable.linebisectionpic);
                 tvDescription.setText(R.string.desc_line_bisection);
                 break;
             default:
